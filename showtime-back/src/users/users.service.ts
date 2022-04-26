@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { users, usersDocument } from 'src/schemas/users.schema';
+import { Users, usersDocument } from 'src/schemas/users.schema';
 import { Model } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -11,23 +11,24 @@ export class UsersService {
     @InjectModel(users.name) private usersModel: Model<usersDocument>,
   ) {}
 
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  async create(CreateUserDto: CreateUserDto): Promise<Users> {
+    const createUser = new this.usersModel(CreateUserDto);
+    return createUser.save();
   }
 
-  async findAll() {
-    return `This action returns all users`;
+  async findAll(): Promise<Users> {
+    return this.usersModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  findOne(id: string) {
+    return this.usersModel.findOne({ id });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+    return this.usersModel.updateOne({ id }, { $set: { ...updateUserDto } });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} user`;
+    return this.usersModel.deleteOne({ id });
   }
 }
