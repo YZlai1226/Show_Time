@@ -3,7 +3,8 @@ import './Wishlist.css'
 const Wishlist = () => {
     return (
         <div>
-        <p>I'm the wishlist !</p>
+
+        <h1>I'm the wishlist !</h1>
         </div>
     )
 }
