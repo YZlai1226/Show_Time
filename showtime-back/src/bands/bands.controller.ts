@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
 import { BandsService } from './bands.service';
 import { CreateBandDto } from './dto/create-band.dto';
 import { UpdateBandDto } from './dto/update-band.dto';
@@ -17,18 +17,18 @@ export class BandsController {
     return this.bandsService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.bandsService.findOne(+id);
+  @Get(':name')
+  findOne(@Param('name') name: string) {
+    return this.bandsService.findOne(name);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBandDto: UpdateBandDto) {
-    return this.bandsService.update(+id, updateBandDto);
+  @Put(':name')
+  update(@Param('name') name: string, @Body() updateBandDto: UpdateBandDto) {
+    return this.bandsService.update(name, updateBandDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.bandsService.remove(+id);
+  @Delete(':name')
+  remove(@Param('name') name: string) {
+    return this.bandsService.remove(name);
   }
 }

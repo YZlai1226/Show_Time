@@ -8,7 +8,7 @@ export class UsersService {
     return 'This action adds a new user';
   }
 
-  findAll() {
+  async findAll() {
     return `This action returns all users`;
   }
 
