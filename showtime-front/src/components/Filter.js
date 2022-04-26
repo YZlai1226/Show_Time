@@ -4,9 +4,12 @@ import Autocomplete from '@mui/material/Autocomplete';
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
 
-export default function Highlights(groups) {
+export default function Highlights(test) {
   return (
-      groups.map(group => <div>{group.name}</div>)
+    <p> {test} </p>
+
+    //   groups.map(group => <div>{group.name}</div>)
+
     // <Autocomplete
     //   id="highlights-demo"
     //   sx={{ width: 300 }}

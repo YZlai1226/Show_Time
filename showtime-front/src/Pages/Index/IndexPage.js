@@ -3,7 +3,9 @@ import Highlights from './../../components/Filter.js'
 
 
 const IndexPage = () => {
-   
+    
+    const test = 'Hello'
+    
     const groups = [
         { name: 'Eagles', year: 1994 },
         { name: 'Coldplay', year: 1972 },
@@ -15,11 +17,11 @@ const IndexPage = () => {
         { name: " Guns N' Roses", year: 2003 },
         { name: 'Red Hot Chili Peppers', year: 1966 },
         { name: 'Sting', year: 1999 },
-      ];
-
+    ];
+    
     return (
         <div>
-            <Highlights groups = {groups}/>
+            <Highlights test = {test}/>
         <h1>I'm the IndexPage !</h1>
         </div>
     )
