@@ -1,26 +1,34 @@
 import { Injectable } from '@nestjs/common';
 import { CreateBandDto } from './dto/create-band.dto';
 import { UpdateBandDto } from './dto/update-band.dto';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import { Bands, BandsDocument } from '../schemas/bands.schema';
 
 @Injectable()
 export class BandsService {
-  create(createBandDto: CreateBandDto) {
-    return 'This action adds a new band';
+  constructor(
+    @InjectModel(Bands.name) private bandsModel: Model<BandsDocument>,
+  ) {}
+
+  async create(createBandDto: CreateBandDto): Promise<Bands> {
+    const createdBand = new this.bandsModel(createBandDto);
+    return createdBand.save();
   }
 
-  findAll() {
-    return `This action returns all bands`;
+  async findAll(): Promise<Bands[]> {
+    return this.bandsModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} band`;
+  findOne(name: string) {
+    return this.bandsModel.findOne({ name });
   }
 
-  update(id: number, updateBandDto: UpdateBandDto) {
-    return `This action updates a #${id} band`;
+  update(name: string, updateBandDto: UpdateBandDto) {
+    return this.bandsModel.updateOne({ name }, { $set: { ...updateBandDto } });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} band`;
+  remove(name: string) {
+    return this.bandsModel.deleteOne({ name });
   }
 }
