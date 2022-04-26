@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Login from './../Pages/Login/Login.js'
-import Register from './../Pages/Register/Register.js'
-import Wishlist from './../Pages/Wishlist/Wishlist.js'
+// import Login from './../Pages/Login/Login.js'
+// import Register from './../Pages/Register/Register.js'
+// import Wishlist from './../Pages/Wishlist/Wishlist.js'
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -13,16 +13,16 @@ import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
+// import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import BookIcon from '@mui/icons-material/Book';
-import MailIcon from '@mui/icons-material/Mail';
+// import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
-import LogoDevIcon from '@mui/icons-material/LogoDev';
+// import LogoDevIcon from '@mui/icons-material/LogoDev';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import logoWhite from './../images/LogoWhite.png'
 const Search = styled('div')(({ theme }) => ({
