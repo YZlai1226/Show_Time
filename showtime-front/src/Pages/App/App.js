@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react
 import Login from './../Login/Login.js'
 import Register from './../Register/Register.js'
 import Wishlist from './../Wishlist/Wishlist.js'
-import Index from './../Index/Index.js'
+import IndexPage from '../Index/IndexPage.js'
 import './App.css';
 import SearchBar from './../../components/SearchBar.js'
 
@@ -12,7 +12,7 @@ function App() {
     <Router>
       <SearchBar />
       <Routes>
-        <Route exact path="/" element={<Index />} />
+        <Route exact path="/" element={<IndexPage />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/wishlist" element={<Wishlist />} />
