@@ -9,7 +9,7 @@ export default function UserList() {
   return (
 
     <Container> 
-            <h1 className='dashTitle'  > Users Dashboard </h1>  
+             
             
             <Table striped bordered hover>
                 <thead>

@@ -11,7 +11,7 @@ export default function Dashboard() {
     <>
     <Topbar />
     <Container>
-     <div> <h1> Dash Home </h1> </div>
+      <h1 className='dashTitle'> Dashboard Home </h1> 
     </Container>
     
     </>
