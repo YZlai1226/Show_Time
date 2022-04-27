@@ -6,6 +6,7 @@ import { useParams,} from "react-router-dom";
 export default function ShowUser() {
 
     let { userId } = useParams();
+    
   return (
     <>
         <Topbar />
