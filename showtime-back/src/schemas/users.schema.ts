@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { Bands } from '../schemas/bands.schema';
+import { Concerts } from '../schemas/concerts.schema';
 import * as mongoose from 'mongoose';
 
 export type UsersDocument = Users & Document;
@@ -27,6 +28,9 @@ export class Users {
 
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Bands' }] })
   bands: Bands[];
+
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Concerts' }] })
+  concerts: Concerts[];
 
   @Prop({ required: true, default: Date.now })
   created_at: Date;

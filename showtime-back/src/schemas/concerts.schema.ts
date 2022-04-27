@@ -20,13 +20,9 @@ export class Concerts {
   @Prop({ required: true })
   description: string;
 
-  // @Prop({ required: true })
-  // band_id: string;
   @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'Bands' })
   bands_id: Bands;
 
-  // @Prop({ required: true })
-  // genre_id: string;
   @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'Genres' })
   genre_id: Genres;
 
