@@ -9,4 +9,4 @@ export class Genres {
   name: string;
 }
 
-export const BandsSchema = SchemaFactory.createForClass(Bands);
+export const GenresSchema = SchemaFactory.createForClass(Genres);

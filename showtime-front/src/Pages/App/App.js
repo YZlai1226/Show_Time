@@ -3,9 +3,8 @@ import { BrowserRouter as Router, } from "react-router-dom";
 
 import './App.css';
 
-import AdminRouter from './../../components/AdminRouter.js'
+import AdminRouter from '../../components/AdminRouter.js'
 import UserRouter from '../../components/UserRouter.js'
-
 
 function App() {
   return (

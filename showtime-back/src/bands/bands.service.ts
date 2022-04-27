@@ -20,15 +20,15 @@ export class BandsService {
     return this.bandsModel.find().exec();
   }
 
-  findOne(id: string) {
-    return this.bandsModel.findOne({ id });
+  findOne(_id: string) {
+    return this.bandsModel.findOne({ _id });
   }
 
-  update(id: string, updateBandDto: UpdateBandDto) {
-    return this.bandsModel.updateOne({ id }, { $set: { ...updateBandDto } });
+  update(_id: string, updateBandDto: UpdateBandDto) {
+    return this.bandsModel.updateOne({ _id }, { $set: { ...updateBandDto } });
   }
 
-  remove(id: string) {
-    return this.bandsModel.deleteOne({ id });
+  remove(_id: string) {
+    return this.bandsModel.deleteOne({ _id });
   }
 }

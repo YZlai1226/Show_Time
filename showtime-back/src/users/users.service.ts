@@ -30,5 +30,6 @@ export class UsersService {
 
   remove(name: string) {
     return this.UsersModel.deleteOne({ name });
+
   }
 }
