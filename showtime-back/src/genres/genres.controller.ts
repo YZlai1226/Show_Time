@@ -1,24 +1,34 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { GenresService } from './genres.service';
+import { CreateGenreDto } from './dto/create-genre.dto';
+import { UpdateGenreDto } from './dto/update-genre.dto';
 
 @Controller('genres')
 export class GenresController {
-  constructor(private readonly GenresService: GenresService) {}
+  constructor(private readonly genresService: GenresService) {}
 
   @Post()
-  async addGenre(
-    @Body('name') prodName: string,
-    @Body('image') prodImage: string,
-  ) {
-    const generatedId = await this.GenresService.createGenres(
-      prodName,
-      prodImage,
-    );
-    return generatedId;
+  create(@Body() createGenreDto: CreateGenreDto) {
+    return this.genresService.create(createGenreDto);
   }
+
   @Get()
-  async getAllProducts() {
-    const genres = await this.GenresService.getGenres();
-    return genres;
+  findAll() {
+    return this.genresService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.genresService.findOne(+id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateGenreDto: UpdateGenreDto) {
+    return this.genresService.update(+id, updateGenreDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.genresService.remove(+id);
   }
 }

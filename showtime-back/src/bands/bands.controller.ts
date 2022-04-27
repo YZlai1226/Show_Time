@@ -17,18 +17,18 @@ export class BandsController {
     return this.bandsService.findAll();
   }
 
-  @Get(':name')
-  findOne(@Param('name') name: string) {
-    return this.bandsService.findOne(name);
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.bandsService.findOne(id);
   }
 
-  @Put(':name')
-  update(@Param('name') name: string, @Body() updateBandDto: UpdateBandDto) {
-    return this.bandsService.update(name, updateBandDto);
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updateBandDto: UpdateBandDto) {
+    return this.bandsService.update(id, updateBandDto);
   }
 
-  @Delete(':name')
-  remove(@Param('name') name: string) {
-    return this.bandsService.remove(name);
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.bandsService.remove(id);
   }
 }
