@@ -7,6 +7,12 @@ export type GenresDocument = Genres & Document;
 export class Genres {
   @Prop({ required: true })
   name: string;
+
+  @Prop({ required: true, default: Date.now })
+  created_at: Date;
+
+  @Prop({ required: true, default: Date.now })
+  updated_at: Date;
 }
 
 export const GenresSchema = SchemaFactory.createForClass(Genres);

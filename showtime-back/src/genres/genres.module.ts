@@ -5,7 +5,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Genres, GenresSchema } from 'src/schemas/genres.schema';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: Genres.name, schema: GenresSchema }])],
+  imports: [
+    MongooseModule.forFeature([{ name: Genres.name, schema: GenresSchema }]),
+  ],
   controllers: [GenresController],
   providers: [GenresService],
 })
