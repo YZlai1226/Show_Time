@@ -1,12 +1,12 @@
 import React from 'react'
 import Topbar from './../../components/topbar/Topbar'
-// import UserList from '../../components/userList/UserList';
+import GenreList from '../../components/GenreList';
 import { Container, Button, Modal, Form } from 'react-bootstrap';
 
 
 
 
-export default function Users() {
+export default function Genres() {
   const [modalShow, setModalShow] = React.useState(false);
 
   return (
@@ -18,7 +18,7 @@ export default function Users() {
         </h1>
 
         
-        {/* <UserList /> */}
+        <GenreList  />
         
         <MyVerticallyCenteredModal
           show={modalShow}
