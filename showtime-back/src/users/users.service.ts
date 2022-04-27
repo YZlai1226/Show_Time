@@ -20,8 +20,8 @@ export class UsersService {
     return this.UsersModel.find().exec();
   }
 
-  findOne(name: string) {
-    return this.UsersModel.findOne({ name });
+  findOne(_id: string) {
+    return this.UsersModel.findOne({ _id });
   }
 
   update(name: string, updateUserDto: UpdateUserDto) {
