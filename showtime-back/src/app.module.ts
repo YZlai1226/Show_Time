@@ -8,10 +8,7 @@ import { GenresModule } from './genres/genres.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/nest'),
-    // MONGODB //
-    // MongooseModule.forRoot('mongodb+srv://Tanguy:zyKzbvOrLV9u4qjj@cluster0.odb5h.mongodb.net/Show_Time?retryWrites=true&w=majority'),
-    // MONGOBD //
+    MongooseModule.forRoot('mongodb+srv://Tanguy:zyKzbvOrLV9u4qjj@cluster0.odb5h.mongodb.net/Show_Time?retryWrites=true&w=majority'),
     BandsModule,
     UsersModule,
     GenresModule,
