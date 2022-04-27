@@ -20,15 +20,58 @@ export class UsersService {
     return this.UsersModel.find().exec();
   }
 
-  findOne(name: string) {
-    return this.UsersModel.findOne({ name });
+  findOne(_id: string) {
+    return this.UsersModel.findOne({ _id });
   }
 
-  update(name: string, updateUserDto: UpdateUserDto) {
-    return this.UsersModel.updateOne({ name }, { $set: { ...updateUserDto } });
+  update(_id: string, updateUserDto: UpdateUserDto) {
+    // return this.UsersModel.updateOne(
+    //   { _id },
+    //   { $addToSet: { bands: updateUserDto['bands'] } },
+    //   { $set: {
+    //     bands: updateUserDto['bands'],
+    //   } },
+    // );
+    return this.UsersModel.updateOne(
+      { _id },
+      { $set: { ...updateUserDto, updated_at: new Date() } },
+      // {  },
+    );
   }
 
-  remove(name: string) {
-    return this.UsersModel.deleteOne({ name });
+  like_band(_id: string, updateUserDto: UpdateUserDto) {
+    return this.UsersModel.updateOne(
+      { _id },
+      { $addToSet: { bands: updateUserDto['bands'] } },
+      { updated_at: new Date() },
+    );
+  }
+
+  unlike_band(_id: string, updateUserDto: UpdateUserDto) {
+    return this.UsersModel.updateOne(
+      { _id },
+      { $pull: { bands: updateUserDto['bands'] } },
+      { updated_at: new Date() },
+    );
+  }
+
+  like_concert(_id: string, updateUserDto: UpdateUserDto) {
+    return this.UsersModel.updateOne(
+      { _id },
+      { $addToSet: { concerts: updateUserDto['concerts'] } },
+      { updated_at: new Date() },
+    );
+  }
+
+  unlike_concert(_id: string, updateUserDto: UpdateUserDto) {
+    return this.UsersModel.updateOne(
+      { _id },
+      { $pull: { concerts: updateUserDto['concerts'] } },
+      { updated_at: new Date() },
+    );
+  }
+
+  remove(_id: string) {
+    return this.UsersModel.deleteOne({ _id });
   }
 }
