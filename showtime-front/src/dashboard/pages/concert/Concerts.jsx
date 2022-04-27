@@ -14,8 +14,8 @@ export default function Concert() {
       <>
         <Topbar responsive="sm" />
         <Container>
-          <h1 className='dashTitle'> Concert Dashboard</h1> 
-          <Button onClick={() => setModalShow(true)} style={{float: "right", margin: 12}} variant="success">Add Concert</Button>
+          <h1 className='dashTitle'> Concert Dashboard           <Button onClick={() => setModalShow(true)} style={{float: "right", margin: 12}} variant="success">Add Concert</Button>
+</h1> 
 
         <MyVerticallyCenteredModal
           show={modalShow}

@@ -1,12 +1,13 @@
 import React from 'react'
 import Topbar from './../../components/topbar/Topbar'
-// import UserList from '../../components/userList/UserList';
+import BandList from '../../components/BandList';
 import { Container, Button, Modal, Form } from 'react-bootstrap';
 
 
 
 
-export default function Users() {
+export default function Bands() {
+
   const [modalShow, setModalShow] = React.useState(false);
 
   return (
@@ -14,11 +15,11 @@ export default function Users() {
       <Topbar />
 
       <Container>
-        <h1 className='dashTitle'> Bands Dashboard         <Button onClick={() => setModalShow(true)} style={{float: "right", margin: 12}} variant="success">New Band</Button>
+        <h1 className='dashTitle'> Bands Dashboard  <Button onClick={() => setModalShow(true)} style={{float: "right", margin: 12}} variant="success">New Band</Button>
         </h1>
 
         
-        {/* <UserList /> */}
+         <BandList /> 
         
         <MyVerticallyCenteredModal
           show={modalShow}
