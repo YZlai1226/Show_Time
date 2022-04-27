@@ -20,15 +20,15 @@ export class UsersService {
     return this.usersModel.find().exec();
   }
 
-  findOne(name: string) {
-    return this.usersModel.findOne({ name });
+  findOne(_id: string) {
+    return this.usersModel.findOne({ _id });
   }
 
-  update(name: string, updateUserDto: UpdateUserDto) {
-    return this.usersModel.updateOne({ name }, { $set: { ...updateUserDto } });
+  update(_id: string, updateUserDto: UpdateUserDto) {
+    return this.usersModel.updateOne({ _id }, { $set: { ...updateUserDto } });
   }
 
-  remove(name: string) {
-    return this.usersModel.deleteOne({ name });
+  remove(_id: string) {
+    return this.usersModel.deleteOne({ _id });
   }
 }
