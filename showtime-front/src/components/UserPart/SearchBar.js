@@ -24,7 +24,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 // import LogoDevIcon from '@mui/icons-material/LogoDev';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
-import logoWhite from './../images/LogoWhite.png'
+import logoWhite from './../../images/LogoWhite.png'
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
