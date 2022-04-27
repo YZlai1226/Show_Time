@@ -19,7 +19,7 @@ export default function Topbar() {
     
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
   <Container>
-  <Navbar.Brand href="/dash">Dashboard</Navbar.Brand>
+  <Navbar.Brand href="/dashboard">Dashboard</Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="me-auto">
@@ -31,7 +31,7 @@ export default function Topbar() {
       <Nav.Link href="#deets"><AccountCircleIcon sx={{fontSize: 30}} /></Nav.Link>
       <NavDropdown title="Actions" id="collasible-nav-dropdown">
         <NavDropdown.Item href="#action/3.1">Logout</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Home Page</NavDropdown.Item>
+        <NavDropdown.Item href="/">Home Page</NavDropdown.Item>
  
       </NavDropdown>
     </Nav>
@@ -43,10 +43,10 @@ export default function Topbar() {
         </Offcanvas.Header>
         <Offcanvas.Body>
         <Nav className="justify-content-end flex-grow-1 pe-3">
-          <Nav.Link href="/dashboard/users"> <GroupIcon sx={{fontSize: 30}}/>  Users </Nav.Link>
-          <Nav.Link href="/dashboard/genres"> <MusicNoteIcon sx={{fontSize: 30}}/> Genres </Nav.Link>
-          <Nav.Link href="/dashboard/concerts"><FestivalIcon sx={{fontSize: 30}}/> Concerts</Nav.Link>
-          <Nav.Link href="/dashboard/bands"><PianoIcon sx={{fontSize: 30}}/>  Bands</Nav.Link>
+          <Nav.Link p-2 href="/dashboard/users"> <GroupIcon sx={{fontSize: 30, paddingBottom: 0.5}}/> Users </Nav.Link>
+          <Nav.Link href="/dashboard/genres"> <MusicNoteIcon sx={{fontSize: 30, paddingBottom: 0.5}}/>Genres </Nav.Link>
+          <Nav.Link href="/dashboard/concerts"><FestivalIcon sx={{fontSize: 30, paddingBottom: 1}}/> Concerts</Nav.Link>
+          <Nav.Link href="/dashboard/bands"><PianoIcon sx={{fontSize: 30, paddingBottom: 0.5}}/> Bands</Nav.Link>
           {/* <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown">
             <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
             <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>

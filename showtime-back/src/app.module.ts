@@ -5,8 +5,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { BandsModule } from './bands/bands.module';
 import { UsersModule } from './users/users.module';
 import { GenresModule } from './genres/genres.module';
+import { AuthModule } from './auth/auth.module';
 import { ConcertsModule } from './concerts/concerts.module';
 import { WishlistModule } from './wishlist/wishlist.module';
+
 
 @Module({
   imports: [
@@ -14,6 +16,7 @@ import { WishlistModule } from './wishlist/wishlist.module';
     BandsModule,
     UsersModule,
     GenresModule,
+    AuthModule,
     ConcertsModule,
     WishlistModule,
   ],
