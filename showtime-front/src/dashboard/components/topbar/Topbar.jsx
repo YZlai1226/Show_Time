@@ -19,7 +19,7 @@ export default function Topbar() {
     
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
   <Container>
-  <Navbar.Brand href="/dash">Dashboard</Navbar.Brand>
+  <Navbar.Brand href="/dashboard">Dashboard</Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="me-auto">
@@ -31,7 +31,7 @@ export default function Topbar() {
       <Nav.Link href="#deets"><AccountCircleIcon sx={{fontSize: 30}} /></Nav.Link>
       <NavDropdown title="Actions" id="collasible-nav-dropdown">
         <NavDropdown.Item href="#action/3.1">Logout</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Home Page</NavDropdown.Item>
+        <NavDropdown.Item href="/">Home Page</NavDropdown.Item>
  
       </NavDropdown>
     </Nav>

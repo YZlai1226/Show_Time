@@ -10,16 +10,16 @@ export default function Users() {
   const [modalShow, setModalShow] = React.useState(false);
 
   return (
- 
     <>
       <Topbar />
 
       <Container>
-        <h1 className='dashTitle'  > Users Dashboard </h1>
+        <h1 className='dashTitle'> Users Dashboard         <Button onClick={() => setModalShow(true)} style={{float: "right", margin: 12}} variant="success">Add User</Button>
+        </h1>
 
-        <Button onClick={() => setModalShow(true)} style={{float: "right", margin: 12}} variant="success">Add User</Button>
-
-          <UserList />
+        
+        <UserList />
+        
         <MyVerticallyCenteredModal
           show={modalShow}
           onHide={() => setModalShow(false)}
@@ -45,19 +45,19 @@ function MyVerticallyCenteredModal(props) {
       </Modal.Header>
       <Modal.Body>
       <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Group className="mb-3" controlId="formBasicA">
           <Form.Label>Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter Name.." />
+          <Form.Control type="text" placeholder="Name.." />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Group className="mb-3" controlId="formBasicB">
           <Form.Label>Email</Form.Label>
-          <Form.Control type="email" placeholder="Enter Email.." />
+          <Form.Control type="email" placeholder="Email.." />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Enter Password" />
+          <Form.Control type="password" placeholder="Password" />
         </Form.Group>
 
         <Form.Select aria-label="Default select example">
