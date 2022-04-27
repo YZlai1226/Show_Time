@@ -9,7 +9,6 @@ import { AuthModule } from './auth/auth.module';
 import { ConcertsModule } from './concerts/concerts.module';
 import { WishlistModule } from './wishlist/wishlist.module';
 
-
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb+srv://Tanguy:zyKzbvOrLV9u4qjj@cluster0.odb5h.mongodb.net/Show_Time?retryWrites=true&w=majority'),
