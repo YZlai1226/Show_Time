@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, Container, Image, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 // import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 // import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
@@ -14,13 +14,13 @@ export default function UserList() {
         { field: 'id', headerName: 'ID', width: 50 },
         { field: 'avatar', headerName: 'Avatar', width: 100 },
         { field: 'name', headerName: 'Name', width: 150 },
-        { field: 'email', headerName: 'Email', width: 150 },
+        { field: 'email', headerName: 'Email', width: 170 },
         { field: 'password', headerName: 'Password', width: 150 },
         { field: 'isActive', headerName: 'is Active', width: 150 },
         { field: 'isAdmin', headerName: 'is Admin', width: 150 },
         { field: 'createdAt',  headerName: 'Created At',  width: 170, },
         
-        { field: 'action',  headerName: 'Actions', width: 170, 
+        { field: 'action',  headerName: 'Actions', width: 150, 
           renderCell: (params) => {
               return (
                   <>

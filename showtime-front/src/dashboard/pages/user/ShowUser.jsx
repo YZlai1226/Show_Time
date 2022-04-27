@@ -14,7 +14,7 @@ export default function ShowUser() {
                 <Col >
                     <div className='user'> 
                          <h1>Show User {userId}</h1>
-                    </div>
+                    </div>ye
                 </Col>
                 <Col sm={8}>
                     <div > 

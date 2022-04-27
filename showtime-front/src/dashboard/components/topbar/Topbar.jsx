@@ -43,10 +43,10 @@ export default function Topbar() {
         </Offcanvas.Header>
         <Offcanvas.Body>
         <Nav className="justify-content-end flex-grow-1 pe-3">
-          <Nav.Link href="/dashboard/users"> <GroupIcon sx={{fontSize: 30}}/>  Users </Nav.Link>
-          <Nav.Link href="/dashboard/genres"> <MusicNoteIcon sx={{fontSize: 30}}/> Genres </Nav.Link>
-          <Nav.Link href="/dashboard/concerts"><FestivalIcon sx={{fontSize: 30}}/> Concerts</Nav.Link>
-          <Nav.Link href="/dashboard/bands"><PianoIcon sx={{fontSize: 30}}/>  Bands</Nav.Link>
+          <Nav.Link p-2 href="/dashboard/users"> <GroupIcon sx={{fontSize: 30, paddingBottom: 0.5}}/> Users </Nav.Link>
+          <Nav.Link href="/dashboard/genres"> <MusicNoteIcon sx={{fontSize: 30, paddingBottom: 0.5}}/>Genres </Nav.Link>
+          <Nav.Link href="/dashboard/concerts"><FestivalIcon sx={{fontSize: 30, paddingBottom: 1}}/> Concerts</Nav.Link>
+          <Nav.Link href="/dashboard/bands"><PianoIcon sx={{fontSize: 30, paddingBottom: 0.5}}/> Bands</Nav.Link>
           {/* <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown">
             <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
             <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
