@@ -10,10 +10,8 @@ export default function ConcertList() {
   return (
     <div>
         <Container> 
-        
-        <h1 className='dashTitle'> Concert Dashboard</h1>  
-            
-            <Table striped bordered hover>
+         
+            <Table responsive="sm">
                 <thead>
                     <tr>
                     <th>id</th>
