@@ -26,8 +26,10 @@ export class UsersService {
   //   return this.UsersModel.findOne({ _id });
   // }
 
-  async findOne(_id: string): Promise<User | undefined> {
-    return this.UsersModel.findOne({ _id });
+  // users = this.findAll();
+
+  async findOneWithEmail(email: string): Promise<User | undefined> {
+    return this.UsersModel.findOne({ email });
   }
 
   update(_id: string, updateUserDto: UpdateUserDto) {
