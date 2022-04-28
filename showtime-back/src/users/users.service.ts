@@ -28,7 +28,7 @@ export class UsersService {
     return this.UsersModel.updateOne({ name }, { $set: { ...updateUserDto } });
   }
 
-  remove(name: string) {
-    return this.UsersModel.deleteOne({ name });
+  remove(id: string) {
+    return this.UsersModel.deleteOne({ id });
   }
 }
