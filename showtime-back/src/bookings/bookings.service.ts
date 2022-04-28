@@ -23,12 +23,12 @@ export class BookingsService {
   }
 
   // async findAllBookingsByUser(user_id: string): Promise<Bookings> {
-  //   return this.BookingsModel.findmany({ user_id: user_id }).exec();
-  // }
-
-  // async findAllBookingsByUser(user_id: string): Promise<Bookings> {
   //   return this.BookingsModel.find({ user_id: user_id }).exec();
   // }
+
+  findAllBookingsByUser(user_id: string) {
+    return this.BookingsModel.find({ user_id: user_id }).select('concert_id').exec();
+  }
 
   findOne(_id: string) {
     return this.BookingsModel.findOne({ _id });

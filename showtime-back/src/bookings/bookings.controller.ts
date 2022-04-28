@@ -22,10 +22,10 @@ export class BookingsController {
     return this.bookingsService.findOne(id);
   }
 
-  // @Get('/user/:id')
-  // findAllBookingsByUser(@Param('id') id: string) {
-  //   return this.bookingsService.findAllBookingsByUser(id);
-  // }
+  @Get('/user/:id')
+  findAllBookingsByUser(@Param('id') id: string) {
+    return this.bookingsService.findAllBookingsByUser(id);
+  }
 
   @Delete()
   remove(@Req() request: Request) {
