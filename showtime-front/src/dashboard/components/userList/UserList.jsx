@@ -26,7 +26,7 @@ export default function UserList() {
 
 
     const columns = [
-        { field: '_id', headerName: 'ID', width: 150 },
+        { field: '_id', headerName: 'ID', width: 250 },
         { field: 'avatar', headerName: 'Avatar', width: 100, renderCell: (params) => {
           return(
             <div>
@@ -34,9 +34,8 @@ export default function UserList() {
             </div>
           )
         } },
-        { field: 'name', headerName: 'Name', width: 100 },
+        { field: 'name', headerName: 'Name', width: 150 },
         { field: 'email', headerName: 'Email', width: 220 },
-        { field: 'password', headerName: 'Password', width: 150 },
         { field: 'account_active', headerName: 'is Active', width: 100 },
         { field: 'admin', headerName: 'is Admin', width: 100 },
         { field: 'created_at',  headerName: 'Created At',  width: 110, },
