@@ -5,6 +5,8 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Users, UsersDocument } from '../schemas/users.schema';
 
+export type User = any;
+
 @Injectable()
 export class UsersService {
   constructor(
@@ -20,7 +22,11 @@ export class UsersService {
     return this.UsersModel.find().exec();
   }
 
-  findOne(_id: string) {
+  // findOne(_id: string) {
+  //   return this.UsersModel.findOne({ _id });
+  // }
+
+  async findOne(_id: string): Promise<User | undefined> {
     return this.UsersModel.findOne({ _id });
   }
 
@@ -38,7 +44,6 @@ export class UsersService {
       // {  },
     );
   }
-
 
   like_band(_id: string, updateUserDto: UpdateUserDto) {
     return this.UsersModel.updateOne(
@@ -76,3 +81,27 @@ export class UsersService {
     return this.UsersModel.deleteOne({ _id });
   }
 }
+// import { Injectable } from '@nestjs/common';
+
+// This should be a real class/interface representing a user entity
+// export type User = any;
+
+// @Injectable()
+// export class UsersService {
+//   private readonly users = [
+//     {
+//       userId: 1,
+//       username: 'john',
+//       password: 'changeme',
+//     },
+//     {
+//       userId: 2,
+//       username: 'maria',
+//       password: 'guess',
+//     },
+//   ];
+
+//   async findOne(username: string): Promise<User | undefined> {
+//     return this.users.find(user => user.username === username);
+//   }
+// }
