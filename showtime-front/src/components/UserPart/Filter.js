@@ -17,10 +17,14 @@ export default function Highlights(props) {
       renderOption={(props, option, { inputValue }) => {
         const matches = match(option.name, inputValue);
         const parts = parse(option.name, matches);
-
+        const listener = event => {
+          if (event.key === 'Enter'){
+            console.log('enter pressed')
+          }
+        }
         return (
           <li {...props}>
-            <div>
+            <div listener={listener}>
               {parts.map((part, index) => (
                 <span
                   key={index}
