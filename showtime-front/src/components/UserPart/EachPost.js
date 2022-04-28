@@ -57,7 +57,7 @@ export default function RecipeReviewCard(props) {
             <MoreVertIcon />
           </IconButton>
         }
-        title={props.data.Title}
+        title={props.data.group_name}
         group='groupName'
         subheader={props.data.date}
       />
@@ -72,7 +72,7 @@ export default function RecipeReviewCard(props) {
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-        {props.data.description.substring(0,100)}
+        {props.data.Title}
         </Typography>
       </CardContent>
 
