@@ -6,6 +6,7 @@ import { BandsModule } from './bands/bands.module';
 import { UsersModule } from './users/users.module';
 import { GenresModule } from './genres/genres.module';
 import { ConcertsModule } from './concerts/concerts.module';
+import { BookingsModule } from './bookings/bookings.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { ConcertsModule } from './concerts/concerts.module';
     UsersModule,
     GenresModule,
     ConcertsModule,
+    BookingsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

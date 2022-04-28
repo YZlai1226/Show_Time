@@ -39,7 +39,6 @@ export class UsersService {
     );
   }
 
-
   like_band(_id: string, updateUserDto: UpdateUserDto) {
     return this.UsersModel.updateOne(
       { _id },
