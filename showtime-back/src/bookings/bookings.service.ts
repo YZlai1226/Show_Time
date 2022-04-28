@@ -11,6 +11,9 @@ export class BookingsService {
   ) {}
 
   async create(createBookingDto: CreateBookingDto): Promise<Bookings> {
+    // console.log('+++++++++++createBookingDto++++++++++++');
+    // console.log(createBookingDto);
+    // console.log('+++++++++++createBookingDto++++++++++++');
     const createdBooking = new this.BookingsModel(createBookingDto);
     return createdBooking.save();
   }
@@ -19,11 +22,19 @@ export class BookingsService {
     return this.BookingsModel.find().exec();
   }
 
+  // async findAllBookingsByUser(user_id: string): Promise<Bookings> {
+  //   return this.BookingsModel.findmany({ user_id: user_id }).exec();
+  // }
+
+  // async findAllBookingsByUser(user_id: string): Promise<Bookings> {
+  //   return this.BookingsModel.find({ user_id: user_id }).exec();
+  // }
+
   findOne(_id: string) {
     return this.BookingsModel.findOne({ _id });
   }
 
-  remove(_id: string) {
-    return this.BookingsModel.deleteOne({ _id });
+  deleteOne(user_id: string, concert_id: string) {
+    return this.BookingsModel.deleteOne({ user_id, concert_id });
   }
 }
