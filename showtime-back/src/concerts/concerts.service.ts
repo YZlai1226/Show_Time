@@ -25,7 +25,10 @@ export class ConcertsService {
   }
 
   update(_id: string, updateConcertDto: UpdateConcertDto) {
-    return this.concertsModel.updateOne({ _id }, { $set: { ...updateConcertDto } });
+    return this.concertsModel.updateOne(
+      { _id },
+      { $set: { ...updateConcertDto } },
+    );
   }
 
   remove(_id: string) {

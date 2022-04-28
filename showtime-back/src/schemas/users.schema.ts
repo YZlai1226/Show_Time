@@ -1,5 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { Bands } from '../schemas/bands.schema';
+import { Concerts } from '../schemas/concerts.schema';
+import * as mongoose from 'mongoose';
 
 export type UsersDocument = Users & Document;
 
@@ -8,7 +11,7 @@ export class Users {
   @Prop({ required: true })
   name: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, unique: true, lowercase: true })
   email: string;
 
   @Prop()
@@ -17,16 +20,22 @@ export class Users {
   @Prop({ required: true })
   password: string;
 
-  @Prop()
+  @Prop({ required: true, default: 'false' })
   account_active: boolean;
 
-  @Prop({ required: true })
+  @Prop({ required: true, default: 'false' })
   admin: boolean;
 
-  @Prop()
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Bands' }] })
+  bands: Bands[];
+
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Concerts' }] })
+  concerts: Concerts[];
+
+  @Prop({ required: true, default: Date.now })
   created_at: Date;
 
-  @Prop()
+  @Prop({ required: true, default: Date.now })
   updated_at: Date;
 }
 
