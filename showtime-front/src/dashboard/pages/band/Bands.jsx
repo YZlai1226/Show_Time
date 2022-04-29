@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Topbar from './../../components/topbar/Topbar'
 import BandList from '../../components/BandList';
 import { Container, Button, Modal, Form } from 'react-bootstrap';
+import axios from 'axios';
 
 
 
@@ -15,7 +16,8 @@ export default function Bands() {
       <Topbar />
 
       <Container>
-        <h1 className='dashTitle'> Bands Dashboard  <Button onClick={() => setModalShow(true)} style={{float: "right", margin: 12}} variant="success">New Band</Button>
+        <h1 className='dashTitle'> Bands Dashboard  <Button onClick={() => setModalShow(true)} style={{float: "right", margin: 12}} variant="success">
+        <i class="bi bi-plus-lg"></i> New Band</Button>
         </h1>
 
         
@@ -32,6 +34,36 @@ export default function Bands() {
   )
 }
 function MyVerticallyCenteredModal(props) {
+  
+  const [bandData, setData] = useState({
+    name: "",
+
+  });
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setData({
+      ...bandData,
+      [e.target.name]: value
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newBandData = {
+      name: bandData.name,
+
+
+    };
+    axios.post("http://localhost:3000/bands", newBandData)
+    .then((response) => {
+      console.log(response.status);
+      console.log(response.data);
+    });
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 2500);
+  }
   return (
     <Modal
       {...props}
@@ -45,17 +77,11 @@ function MyVerticallyCenteredModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicA">
           <Form.Label>Band Name</Form.Label>
-          <Form.Control type="text" placeholder="Name.." />
+          <Form.Control name='name' value={bandData.name} onChange={handleChange} type="text" placeholder="Name.." />
         </Form.Group>
-
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Description</Form.Label>
-            <Form.Control as="textarea" rows={3} placeholder="Description..." />
-          </Form.Group>
-
 
         <Button className='mt-2' variant="primary" type="submit">
           Submit
