@@ -3,6 +3,7 @@ import { CreateBookingDto } from './dto/create-booking.dto';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Bookings, BookingsDocument } from '../schemas/bookings.schema';
+import { userInfo } from 'os';
 
 @Injectable()
 export class BookingsService {
@@ -26,8 +27,13 @@ export class BookingsService {
   //   return this.BookingsModel.find({ user_id: user_id }).exec();
   // }
 
-  findAllBookingsByUser(user_id: string) {
-    return this.BookingsModel.find({ user_id: user_id }).select('concert_id').exec();
+  async findAllBookingsByUser(user_id: string) {
+    // console.log(user_id)
+    const booking = await this.BookingsModel.find({user_id}).select('concert_id').exec();
+    // console.log(booking)
+    return booking
+      // .select('concert_id')
+      // .exec();
   }
 
   findOne(_id: string) {

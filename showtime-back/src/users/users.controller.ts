@@ -2,10 +2,14 @@ import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common'
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { BookingsService } from '../bookings/bookings.service';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly bookingsService: BookingsService,
+  ) {}
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
@@ -21,6 +25,21 @@ export class UsersController {
   findOne(@Param('email') email: string) {
     return this.usersService.findOneWithEmail(email);
   }
+
+  @Get('/userdetails/:id')
+  async findOneUser(@Param('id') id: string) {
+    let user: any = await this.usersService.findOneUser(id);
+    // console.log('test')
+    user = user._doc;
+    const bookings = await this.bookingsService.findAllBookingsByUser(id);
+    return { ...user, bookings };
+  }
+
+  // @Get('/mybookings/:id')
+  // async findAllBookingsByUser(@Param('id') id: string) {
+  //   console.log('coucou')
+  //   return await this.bookingsService.findAllBookingsByUser(id);
+  // }
 
   @Put(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
