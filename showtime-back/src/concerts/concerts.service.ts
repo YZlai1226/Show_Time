@@ -20,8 +20,9 @@ export class ConcertsService {
     return this.concertsModel.find().exec();
   }
 
-  findOne(_id: string) {
-    return this.concertsModel.findOne({ _id });
+  async findOne(_id: string) {
+    const concert = await this.concertsModel.findById(_id).exec();
+    return concert;
   }
 
   update(_id: string, updateConcertDto: UpdateConcertDto) {

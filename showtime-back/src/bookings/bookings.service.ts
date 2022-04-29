@@ -31,9 +31,18 @@ export class BookingsService {
     // console.log(user_id)
     const booking = await this.BookingsModel.find({user_id}).select('concert_id').exec();
     // console.log(booking)
-    return booking
-      // .select('concert_id')
-      // .exec();
+    return booking;
+    // .select('concert_id')
+    // .exec();
+  }
+
+  async findAllBookingsByConcert(concert_id: string) {
+    // console.log(user_id)
+    const booking = await this.BookingsModel.find({concert_id}).select('user_id').exec();
+    // console.log(booking)
+    return booking;
+    // .select('concert_id')
+    // .exec();
   }
 
   findOne(_id: string) {
