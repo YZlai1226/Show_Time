@@ -32,6 +32,7 @@ export default function ShowUser() {
     password: "",
     account_active: "",
     admin: "",
+    avatar: "",
   });
 
   const handleChange = (e) => {
@@ -50,6 +51,7 @@ export default function ShowUser() {
       password: data.password,
       account_active: data.account_active,
       admin: data.admin,
+      avatar: data.avatar
     };
     axios
       .put(`http://localhost:3000/users/${userId}`, userData)
@@ -132,7 +134,17 @@ export default function ShowUser() {
                 <h3> Edit user n° {userId}</h3>
               </div>
               <Form onSubmit={handleSubmit}>
-                
+              <Form.Group className="mb-3" controlId="formBasicA">
+                  <Form.Label>Avatar</Form.Label>
+                  <Form.Control
+                    name="avatar"
+                    value={data.avatar}
+                    onChange={handleChange}
+                    type="text"
+                    placeholder={user.avatar}
+                  />
+                </Form.Group>
+
                 <Form.Group className="mb-3" controlId="formBasicA">
                   <Form.Label>Name</Form.Label>
                   <Form.Control
