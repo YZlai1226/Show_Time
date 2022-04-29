@@ -20,8 +20,11 @@ export class Concerts {
   @Prop({ required: true })
   description: string;
 
+  @Prop({ required: true })
+  seat_amount: number;
+
   @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'Bands' })
-  bands_id: Bands;
+  band_id: Bands;
 
   @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'Genres' })
   genre_id: Genres;

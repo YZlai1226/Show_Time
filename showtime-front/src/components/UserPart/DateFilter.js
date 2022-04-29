@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRangePicker } from 'react-date-range';
-import './DateFilter.css';
+// import './DateFilter.css';
 
 const DateFilter = (props) => {
   const [selectionRanges, setSelectionRanges] = useState(({
