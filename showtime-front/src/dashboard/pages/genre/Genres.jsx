@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Topbar from './../../components/topbar/Topbar'
 import GenreList from '../../components/GenreList';
 import { Container, Button, Modal, Form } from 'react-bootstrap';
-
+import axios from 'axios';
 
 
 
@@ -31,6 +31,33 @@ export default function Genres() {
   )
 }
 function MyVerticallyCenteredModal(props) {
+
+  const [genreData, setData] = useState({
+    name: "",
+
+  });
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setData({
+      ...genreData,
+      [e.target.name]: value
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newGenreData = {
+      name: genreData.name,
+
+
+    };
+    axios.post("http://localhost:3000/genres", newGenreData)
+    .then((response) => {
+      console.log(response.status);
+      console.log(response.data);
+    });
+  }
   return (
     <Modal
       {...props}

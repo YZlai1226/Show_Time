@@ -39,11 +39,12 @@ export default function Concert() {
       title: "",
       description: "",
       date:"",
-      band_id: "",
+      bands_id: "",
       genre_id: "",
     });
   
     const handleChange = (e) => {
+
       const value = e.target.value;
       setConcertData({
         ...concertData,
@@ -53,13 +54,14 @@ export default function Concert() {
   
     const handleSubmit = (e) => {
       e.preventDefault();
+
       const newConcertData = {
         seat_amount: concertData.seat_amount,
         image: concertData.image,
         title: concertData.title,
         description: concertData.description,
         date: concertData.date,
-        band_id: concertData.band_id,
+        bands_id: concertData.bands_id,
         genre_id: concertData.genre_id,
   
       };
@@ -108,7 +110,7 @@ export default function Concert() {
 
               <Form.Group className="mb-3" controlId="formBasica">
                 <Form.Label>band</Form.Label>
-                <Form.Control name='band_id' value={concertData.band_id} onChange={handleChange} type="text" placeholder="band id" />
+                <Form.Control name='bands_id' value={concertData.bands_id} onChange={handleChange} type="text" placeholder="band id" />
               </Form.Group>
       
 

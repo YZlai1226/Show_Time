@@ -8,6 +8,7 @@ import Genres from '../dashboard/pages/genre/Genres';
 
 import Dashboard from '../dashboard/Dashboard';
 import ShowUser from '../dashboard/pages/user/ShowUser';
+import ShowConcert from '../dashboard/pages/concert/ShowConcert';
 
 
 
@@ -26,6 +27,7 @@ export default function AdminRouter() {
           <Route exact path="/dashboard/bands" element={<Bands />} />
           {/* Dashboard routes with params id  */}
           <Route exact path="/dashboard/user/:userId" element={<ShowUser />} />
+          <Route exact path="/dashboard/concert/:concertId" element={<ShowConcert />} />
         </Routes> 
          
         
