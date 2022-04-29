@@ -5,6 +5,8 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Users, UsersDocument } from '../schemas/users.schema';
 
+export type User = any;
+
 @Injectable()
 export class UsersService {
   constructor(
@@ -20,8 +22,14 @@ export class UsersService {
     return this.UsersModel.find().exec();
   }
 
-  findOne(_id: string) {
-    return this.UsersModel.findOne({ _id });
+  // findOne(_id: string) {
+  //   return this.UsersModel.findOne({ _id });
+  // }
+
+  // users = this.findAll();
+
+  async findOneWithEmail(email: string): Promise<User | undefined> {
+    return this.UsersModel.findOne({ email });
   }
 
   update(_id: string, updateUserDto: UpdateUserDto) {
@@ -38,7 +46,6 @@ export class UsersService {
       // {  },
     );
   }
-
 
   like_band(_id: string, updateUserDto: UpdateUserDto) {
     return this.UsersModel.updateOne(
