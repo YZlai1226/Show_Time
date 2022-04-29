@@ -22,24 +22,21 @@ export default function BandList() {
 
 
     const columns = [
-        { field: '_id', headerName: 'ID', width: 400 },
-        { field: 'name', headerName: 'Name', width: 150 },
-        
-        { field: '__v', headerName: 'V', width: 100 },
-        { field: 'created_at',  headerName: 'Created At',  width: 200, },
-        { field: 'updated_at',  headerName: 'Updated At',  width: 200, },
+        { field: '_id', headerName: 'ID', width: 270 },
+        { field: 'name', headerName: 'Name', width: 300 },
+        { field: 'created_at',  headerName: 'Created At',  width: 250, },
+        { field: 'updated_at',  headerName: 'Updated At',  width: 250, },
 
         
         { field: 'action',  headerName: 'Actions', width: 150, 
           renderCell: (params) => {
               return (
                   <>
-                    <Link to={"/dashboard/user/" + params.row._id}>
+                    <Link to={"/dashboard/band/" + params.row._id}>
                     <Button  variant="success">
-                        Edit
+                    <i style={{marginRight: 2}} class="bi bi-box-arrow-in-right"></i>  Actions
                     </Button>                       
                     </Link>
-                        <DeleteForeverIcon style={{color: "red", fontSize: 40, marginLeft: 10}}/> 
                   </>
               );
           }

@@ -23,7 +23,7 @@ export default function UserList() {
     
 
     const columns = [
-        { field: '_id', headerName: 'ID', width: 250 },
+        { field: '_id', headerName: 'ID', width: 220 },
         { field: 'avatar', headerName: 'Avatar', width: 100, renderCell: (params) => {
           return(
             <div>
@@ -31,11 +31,11 @@ export default function UserList() {
             </div>
           )
         } },
-        { field: 'name', headerName: 'Name', width: 150 },
+        { field: 'name', headerName: 'Name', width: 130 },
         { field: 'email', headerName: 'Email', width: 220 },
         { field: 'account_active', headerName: 'is Active', width: 100 },
         { field: 'admin', headerName: 'is Admin', width: 100 },
-        { field: 'created_at',  headerName: 'Created At',  width: 110, },
+        { field: 'created_at',  headerName: 'Created At',  width: 200, },
         
         { field: 'action',  headerName: 'Actions', width: 150, 
           renderCell: (params) => {
@@ -43,7 +43,7 @@ export default function UserList() {
                   <>
                     <Link to={"/dashboard/user/" + params.row._id}>
                     <Button  variant="success">
-                        Actions
+                    <i style={{marginRight: 2}} class="bi bi-box-arrow-in-right"></i>  Actions
                     </Button>                       
                     </Link>
                                               

@@ -6,6 +6,7 @@ import axios from 'axios';
 
 
 
+
 export default function Genres() {
   const [modalShow, setModalShow] = React.useState(false);
 
@@ -14,7 +15,9 @@ export default function Genres() {
       <Topbar />
 
       <Container>
-        <h1 className='dashTitle'> Genres Dashboard         <Button onClick={() => setModalShow(true)} style={{float: "right", margin: 12}} variant="success">New Genre</Button>
+        <h1 className='dashTitle'> Genres Dashboard      
+           <Button onClick={() => setModalShow(true)} style={{float: "right", margin: 12}} variant="success">
+           <i class="bi bi-plus-lg"></i> New Genre</Button>
         </h1>
 
         
@@ -57,6 +60,10 @@ function MyVerticallyCenteredModal(props) {
       console.log(response.status);
       console.log(response.data);
     });
+    setTimeout(() => {
+      window.location.reload(false);
+
+    }, 2500);
   }
   return (
     <Modal
@@ -67,18 +74,18 @@ function MyVerticallyCenteredModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          New genre
+          Add genre
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicA">
           <Form.Label>Genre Name</Form.Label>
-          <Form.Control type="text" placeholder="Name.." />
+          <Form.Control name='name' value={genreData.name} onChange={handleChange} type="text" placeholder="Genre name .." />
         </Form.Group>
 
-        <Button className='mt-2' variant="primary" type="submit">
-          Submit
+        <Button className='mt-2' variant="success" type="submit">
+        <i class="bi bi-check-lg"></i> Submit
         </Button>
 
       </Form>
