@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap';
-// import EditIcon from '@mui/icons-material/Edit';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-// import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { Link} from "react-router-dom";
 import axios from 'axios';
 import { DataGrid } from '@mui/x-data-grid';
@@ -23,7 +20,7 @@ export default function UserList() {
       })
     }, [])
 
-
+    
 
     const columns = [
         { field: '_id', headerName: 'ID', width: 250 },
@@ -46,28 +43,27 @@ export default function UserList() {
                   <>
                     <Link to={"/dashboard/user/" + params.row._id}>
                     <Button  variant="success">
-                        Edit
+                        Actions
                     </Button>                       
                     </Link>
-                        <DeleteForeverIcon style={{color: "red", fontSize: 40, marginLeft: 10}}/> 
+                                              
                   </>
               );
           }
             },
-
 
       ];
 
       
 
         return (
-          <div style={{ height: 600, width: '100%' }}>
+          <div style={{ height: 400, width: '100%' }}>
             <DataGrid
               getRowId={(row) => row._id}
               rows={usersData}
               disableSelectionOnClick
               columns={columns}
-              pageSize={10}
+              pageSize={5}
               rowsPerPageOptions={[5]}
               checkboxSelection
             />

@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Topbar from './../../components/topbar/Topbar'
 import UserList from '../../components/userList/UserList';
 import { Container, Button, Modal, Form } from 'react-bootstrap';
+import axios from 'axios';
+
 
 
 
@@ -9,12 +11,14 @@ import { Container, Button, Modal, Form } from 'react-bootstrap';
 export default function Users() {
   const [modalShow, setModalShow] = React.useState(false);
 
+
   return (
     <>
       <Topbar />
 
       <Container>
-        <h1 className='dashTitle'> Users Dashboard         <Button onClick={() => setModalShow(true)} style={{float: "right", margin: 12}} variant="success">Add User</Button>
+        <h1 className='dashTitle'> Users Dashboard 
+         <Button onClick={() => setModalShow(true)} style={{float: "right", margin: 12}} variant="success">Add User</Button>
         </h1>
 
         
@@ -31,6 +35,34 @@ export default function Users() {
   )
 }
 function MyVerticallyCenteredModal(props) {
+  const [userData, setData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setData({
+      ...userData,
+      [e.target.name]: value
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newUserData = {
+      name: userData.name,
+      email: userData.email,
+      password: userData.password,
+
+    };
+    axios.post("http://localhost:3000/users", newUserData)
+    .then((response) => {
+      console.log(response.status);
+      console.log(response.data);
+    });
+  }
   return (
     <Modal
       {...props}
@@ -44,29 +76,24 @@ function MyVerticallyCenteredModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-      <Form>
+      <Form onSubmit={handleSubmit} >
         <Form.Group className="mb-3" controlId="formBasicA">
           <Form.Label>Name</Form.Label>
-          <Form.Control type="text" placeholder="Name.." />
+          <Form.Control name='name' value={userData.name} onChange={handleChange}  type="text" placeholder="Name.." />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicB">
           <Form.Label>Email</Form.Label>
-          <Form.Control type="email" placeholder="Email.." />
+          <Form.Control name='email' value={userData.email} onChange={handleChange} type="email" placeholder="Email.." />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
+          <Form.Control name='password' value={userData.password} onChange={handleChange}    type="password" placeholder="Password.." />
         </Form.Group>
 
-        <Form.Select aria-label="Default select example">
-          <option>Role</option>
-          <option value="1">Admin</option>
-          <option value="2">User</option>
-        </Form.Select>
 
-        <Button className='mt-2' variant="primary" type="submit">
+        <Button  className='mt-2' variant="primary" type="submit">
           Submit
         </Button>
 
@@ -77,4 +104,4 @@ function MyVerticallyCenteredModal(props) {
       </Modal.Footer>
     </Modal>
   );
-}
+      }
