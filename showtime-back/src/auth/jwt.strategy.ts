@@ -7,6 +7,8 @@ import { jwtConstants } from './constants';
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor() {
     super({
+      // usernameField: 'email',
+      // userIDField: 'password',
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
       secretOrKey: jwtConstants.secret,
@@ -14,6 +16,13 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: any) {
-    return { userId: payload.sub, email: payload.email };
+    console.log("++++password+++++")
+    console.log(payload.sub)
+    console.log("++++password+++++")
+    
+    console.log("++++email+++++")
+    console.log(payload.email)
+    console.log("++++eami+++++")
+    return { password: payload.sub, email: payload.email };
   }
 }
