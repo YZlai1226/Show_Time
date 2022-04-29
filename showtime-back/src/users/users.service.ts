@@ -24,7 +24,6 @@ export class UsersService {
 
   async findOneUser(_id: string) {
     const user = await this.UsersModel.findById(_id).exec();
-    console.log(user)
     return user;
   }
 

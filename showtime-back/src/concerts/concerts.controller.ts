@@ -2,10 +2,14 @@ import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common'
 import { ConcertsService } from './concerts.service';
 import { CreateConcertDto } from './dto/create-concert.dto';
 import { UpdateConcertDto } from './dto/update-concert.dto';
+import { BookingsService } from '../bookings/bookings.service';
 
 @Controller('concerts')
 export class ConcertsController {
-  constructor(private readonly concertsService: ConcertsService) {}
+  constructor(
+    private readonly concertsService: ConcertsService,
+    private readonly bookingsService: BookingsService,
+  ) {}
 
   @Post()
   create(@Body() createConcertDto: CreateConcertDto) {
@@ -18,8 +22,12 @@ export class ConcertsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.concertsService.findOne(id);
+  async findOne(@Param('id') id: string) {
+    let concert: any = await this.concertsService.findOne(id);
+    concert = concert._doc;
+    const bookings = await this.bookingsService.findAllBookingsByConcert(id);
+    return { ...concert, bookings };
+    // return this.concertsService.findOne(id);
   }
 
   @Put(':id')

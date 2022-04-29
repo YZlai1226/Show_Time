@@ -11,7 +11,7 @@ export class Concerts {
   @Prop({ required: true })
   title: string;
 
-  @Prop({ required: true })
+  @Prop({ default: './../../images/Concert.jpeg' })
   image: string;
 
   @Prop({ required: true })

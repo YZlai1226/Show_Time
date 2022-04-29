@@ -14,7 +14,7 @@ export class Users {
   @Prop({ required: true, unique: true, lowercase: true })
   email: string;
 
-  @Prop()
+  @Prop({ default: 'https://picsum.photos/200' })
   avatar: string;
 
   @Prop({ required: true })
