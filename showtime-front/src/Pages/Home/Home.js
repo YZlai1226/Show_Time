@@ -67,16 +67,20 @@ const Home = () => {
 
   return (
     <div class='home'>
-      <SearchBar />
-      <div class='Filters'>
-        <Highlights filter={groups} label="Artist" onChange={onGroupChange} />
-        <Highlights filter={genres} label="Genre" onChange={onGenreChange} />
-        <DateFilter onChange={onDateChange} />
-        {console.log('genres here is :', genres)}
-        {console.log('groups here is :', groups)}
-        {console.log('concerts here is :', concerts)}
+      <SearchBar class="searchbar" />
+      <div class='homePageContent'>
+        <div class="posts">
+          <PostsManager concerts={concerts} groups={groups} />
+        </div>
+        <div class='Filters'>
+          <Highlights class="highlights" filter={groups} label="Artist" onChange={onGroupChange} />
+          <Highlights class="highlights" filter={genres} label="Genre" onChange={onGenreChange} />
+          <DateFilter onChange={onDateChange} />
+          {console.log('genres here is :', genres)}
+          {console.log('groups here is :', groups)}
+          {console.log('concerts here is :', concerts)}
+        </div>
       </div>
-      <PostsManager concerts={concerts} groups={groups} />
     </div>
   )
 }
