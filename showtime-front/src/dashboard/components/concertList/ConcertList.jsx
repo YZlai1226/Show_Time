@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import { Link} from "react-router-dom";
 import axios from 'axios';
 import { DataGrid } from '@mui/x-data-grid';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+
 
 
 export default function ConcertList() {
@@ -45,10 +45,10 @@ export default function ConcertList() {
                   <>
                     <Link to={"/dashboard/concert/" + params.row._id}>
                     <Button  variant="success">
-                        Edit
+                        Actions
                     </Button>                       
                     </Link>
-                        <DeleteForeverIcon style={{color: "red", fontSize: 40, marginLeft: 10}}/> 
+                    
                   </>
               );
           }

@@ -1,22 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import Topbar from '../../components/topbar/Topbar'
-import { useParams,} from "react-router-dom";
+import { unstable_HistoryRouter, useParams,} from "react-router-dom";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 
-export default function ShowUser() {
 
+export default function ShowUser() {
     let { userId } = useParams();
     const [user, setUserData] = useState({});
-    const [userName, setUserName] = useState('');
-    const [userEmail, setUserEmail] = useState('');
-    const [userPassword, setUserPassword] = useState('');
-    const [userActive, setUserActive] = useState('');
-    const [userAdmin, setUserAdmin] = useState('');
+
 
     // Get user 
     useEffect(() => {
@@ -29,18 +25,48 @@ export default function ShowUser() {
         console.log(err)
       })
     }, [userId]);
+    
+    const [data, setData] = useState({
+      name: "",
+      email: "",
+      password: "",
+      account_active: "",
+      admin: ""
+    });
+  
+    const handleChange = (e) => {
+      const value = e.target.value;
+      setData({
+        ...data,
+        [e.target.name]: value
+      });
+    };
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      const userData = {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        account_active: data.account_active,
+        admin: data.admin
+  
+      };
+      axios.put(`http://localhost:3000/users/${userId}`, userData)
+      .then((response) => {
+        console.log(response.status);
+        console.log(response.data);
+      });
+    }
 
-    const editUser =  (e) => {
-        e.preventDefault();
-        const updatedUser = { name: userName, email: userEmail, 
-            password: userPassword, accounte_active: userActive, admin: userAdmin };
-        axios.put(`http://localhost:3000/users/${userId}`, updatedUser);
-        setUserName('');
-        setUserEmail('');
-        setUserPassword('');
-        setUserActive('');
-        setUserAdmin('');   
+    // Delete User
 
+    const deleteUser = (userId, e) => {
+      e.preventDefault();
+      axios.delete(`http://localhost:3000/users/${userId}`)
+      .then(res => console.log('deleted', res))
+      .catch(err => console.log(err));
+      unstable_HistoryRouter.push('/dashboard')
     }
     
   return (
@@ -66,7 +92,7 @@ export default function ShowUser() {
                                 E-mail: {user.email}
                                 </Typography>
                                 <Typography variant="h6" color="text.secondary">
-                                Actif: {user.account_active}
+                                Actif:  {user.account_active}
                                 </Typography>
                                 <Typography variant="h6" color="text.secondary">
                                 Admin: {user.admin}
@@ -84,33 +110,36 @@ export default function ShowUser() {
                     </div>
                 </Col>
                 <Col lg= "6">
-                <div className='shadow-sm p-3 mb-5 bg-white rounded' style={{marginTop: 50}}>
-                        <h3> Edit user n° {userId}</h3>
-                <Form onSubmit={editUser}>
+                <div className='shadow-sm p-3 mb-5 bg-white rounded' style={{marginTop: 10}}>
+
+                        <h3> Edit user n° {userId} <Button onClick={(e)=> deleteUser(userId, e)}  variant="danger">
+                        Delete
+                    </Button></h3>
+                <Form onSubmit={handleSubmit} >
                     <Form.Group className="mb-3" controlId="formBasicA">
                     <Form.Label>Name</Form.Label>
-                    <Form.Control value={userName} type="text" placeholder= {user.name} />
+                    <Form.Control name='name' value={data.name} onChange={handleChange} type="text" placeholder= {user.name} />
                     </Form.Group>
                    
                     <Form.Group className="mb-3" controlId="formBasicA">
                     <Form.Label>Email</Form.Label>
-                    <Form.Control value={userEmail} type="text" placeholder= {user.email} />
+                    <Form.Control name='email' value={data.email} onChange={handleChange}  type="text" placeholder= {user.email} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicA">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control value={userPassword} type="text" placeholder= {user.password} />
+                    <Form.Control name='password' value={data.password} onChange={handleChange}  type="text" placeholder= {user.password} />
                     </Form.Group>
 
                    
                     <Form.Group className="mb-3" controlId="formBasicC">
                     <Form.Label>Actif</Form.Label>
-                    <Form.Control value={userActive} type="text" placeholder= {user.account_active} />
+                    <Form.Control name='account_active' value={data.account_active} onChange={handleChange}  type="text" placeholder= {user.account_active} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicD">
                     <Form.Label>Admin right</Form.Label>
-                    <Form.Control value={userAdmin} type="text" placeholder= {user.admin} />
+                    <Form.Control name='admin' value={data.admin} onChange={handleChange} type="text" placeholder= {user.admin} />
                     </Form.Group>
 
                     <Button className='mt-2' variant="primary" type="submit">

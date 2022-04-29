@@ -22,11 +22,11 @@ export class UsersService {
     return this.UsersModel.find().exec();
   }
 
-  // findOne(_id: string) {
-  //   return this.UsersModel.findOne({ _id });
-  // }
-
-  // users = this.findAll();
+  async findOneUser(_id: string) {
+    const user = await this.UsersModel.findById(_id).exec();
+    console.log(user)
+    return user;
+  }
 
   async findOneWithEmail(email: string): Promise<User | undefined> {
     return this.UsersModel.findOne({ email });
