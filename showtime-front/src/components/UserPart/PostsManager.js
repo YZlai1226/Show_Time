@@ -1,16 +1,18 @@
 import RecipeReviewCard from './EachPost.js';
-// import React,{useState} from 'react';
 
 const postsManager = (props) => {
 
-    return (
-        <div>
-            {props.postsFiltered.map((concert) => (
-            <RecipeReviewCard data={concert} key={concert.id} />
-            )
-            )}
-        </div>
-    )
+  return (
+    <div>
+      {props.concerts?.map((concert) => (
+        <RecipeReviewCard
+          concert={concert}
+          key={concert._id}
+          group={props.groups?.filter((group) => group._id === concert.band_id)}
+        />
+      ))}
+    </div>
+  )
 }
 
 export default postsManager;
