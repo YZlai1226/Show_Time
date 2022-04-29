@@ -46,7 +46,7 @@ export default function RecipeReviewCard(props) {
             <CardHeader
                 avatar={
                     <Avatar sx={{ bgcolor: red[500] }} aria-label="group">
-                        {props.group[0].name.substring(0, 1)}
+                        {props.group[0]?.name.substring(0, 1)}
                     </Avatar>
                 }
                 action={
@@ -54,7 +54,7 @@ export default function RecipeReviewCard(props) {
                         <MoreVertIcon />
                     </IconButton>
                 }
-                title={props.group[0].name}
+                title={props.group[0]?.name}
                 group='groupName'
                 subheader={props.concert.date}
             />
