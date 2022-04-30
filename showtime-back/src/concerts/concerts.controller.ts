@@ -1,4 +1,5 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { ConcertsService } from './concerts.service';
 import { CreateConcertDto } from './dto/create-concert.dto';
 import { UpdateConcertDto } from './dto/update-concert.dto';
@@ -10,7 +11,7 @@ export class ConcertsController {
     private readonly concertsService: ConcertsService,
     private readonly bookingsService: BookingsService,
   ) {}
-
+  @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() createConcertDto: CreateConcertDto) {
     return this.concertsService.create(createConcertDto);
@@ -29,12 +30,12 @@ export class ConcertsController {
     return { ...concert, bookings };
     // return this.concertsService.findOne(id);
   }
-
+  @UseGuards(JwtAuthGuard)
   @Put(':id')
   update(@Param('id') id: string, @Body() updateConcertDto: UpdateConcertDto) {
     return this.concertsService.update(id, updateConcertDto);
   }
-
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.concertsService.remove(id);
