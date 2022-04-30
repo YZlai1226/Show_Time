@@ -38,7 +38,7 @@ function MyVerticallyCenteredModal(props) {
     title: "",
     description: "",
     date: "",
-    bands_id: "",
+    band_id: "",
     genre_id: "",
   });
 
@@ -59,7 +59,7 @@ function MyVerticallyCenteredModal(props) {
       title: concertData.title,
       description: concertData.description,
       date: concertData.date,
-      bands_id: concertData.bands_id,
+      band_id: concertData.band_id,
       genre_id: concertData.genre_id,
     };
     axios
@@ -143,8 +143,8 @@ function MyVerticallyCenteredModal(props) {
           <Form.Group className="mb-3" controlId="formBasica">
             <Form.Label>band</Form.Label>
             <Form.Control
-              name="bands_id"
-              value={concertData.bands_id}
+              name="band_id"
+              value={concertData.band_id}
               onChange={handleChange}
               type="text"
               placeholder="band id"

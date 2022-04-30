@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Container } from 'react-bootstrap';
 import { Link} from "react-router-dom";
-import axios from 'axios';
+// import axios from 'axios';
+import axios from '../../api/axios'
 import { DataGrid } from '@mui/x-data-grid';
 
 export default function GenreList() {
@@ -9,6 +10,7 @@ export default function GenreList() {
   const [genresData, setGenresData] = useState([])
 
     useEffect(() => {
+      console.log('FRONT RIGHT HERE !');
       axios.get('http://localhost:3000/genres')
       .then(res => {
         console.log(res)

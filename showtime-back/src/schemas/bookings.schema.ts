@@ -8,10 +8,10 @@ export type BookingsDocument = Bookings & Document;
 
 @Schema()
 export class Bookings {
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Users' })
+  @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'Users' })
   user_id: Users;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Concerts' })
+  @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'Concerts' })
   concert_id: Concerts;
 
   @Prop({ required: true, default: Date.now })
