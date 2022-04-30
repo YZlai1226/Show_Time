@@ -35,12 +35,13 @@ const Login = () => {
                     JSON.stringify({email:user, password:pwd}),
                     {
                         headers: { 'Content-Type': 'application/json'},
-                        withCredentials: true
+                        withCredentials: false
                     });
             console.log(JSON.stringify(response?.data));
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
-            localStorage.setItem("token", JSON.stringify(response?.data.access_token));
+            // console.log(`response?.data.access_token: ${response?.data.access_token.slice(1, -1)}`);
+            localStorage.setItem("token", JSON.stringify(response?.data.access_token).slice(1, -1));
             setAuth({user, pwd, roles, accessToken});
             setUser('');
             setPwd('');
@@ -60,7 +61,6 @@ const Login = () => {
             errRef.current.focus();
             // return ??
         }
-        // SET TOKEN IN LOCALSTORAGE or COOKIES..
     }
 
     return (

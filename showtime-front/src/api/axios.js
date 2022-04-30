@@ -8,18 +8,14 @@ const myAxios = axios.create({
 })
 
 myAxios.interceptors.request.use(function (config) {
-    // const token = store.getState().session.token;
-    // const token = "BABAR42";
-    // GET THE TOKEN FROM SOMEWHERE LOCALSTORAGE OR COOKIES ... OR PUT null IF NOT
     const token = localStorage.getItem('token');
-    console.log('===========')
-    console.log(token);
+    // console.log('===========')
+    // console.log(token);
     if (token)
-        config.headers.Authorization =  token;
-
-    // return config;
-    else 
-        console.log('nooooo');
+        config.headers.Authorization =  'Bearer ' + token;
+    // else 
+    //     console.log('nooooo');
+    return config
 });
 
 export default myAxios;

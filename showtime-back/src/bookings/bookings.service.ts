@@ -12,9 +12,6 @@ export class BookingsService {
   ) {}
 
   async create(createBookingDto: CreateBookingDto): Promise<Bookings> {
-    // console.log('+++++++++++createBookingDto++++++++++++');
-    // console.log(createBookingDto);
-    // console.log('+++++++++++createBookingDto++++++++++++');
     const createdBooking = new this.BookingsModel(createBookingDto);
     return createdBooking.save();
   }

@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Link} from "react-router-dom";
-import axios from 'axios';
+// import axios from 'axios';
+import axios from '../../api/axios'
 import { DataGrid } from '@mui/x-data-grid';
 
 export default function BandList() {
     const [bandsData, setBandsData] = useState([])
 
     useEffect(() => {
-      axios.get('http://localhost:3000/bands')
+      axios.get('/bands')
       .then(res => {
         console.log(res)
         setBandsData(res.data)
