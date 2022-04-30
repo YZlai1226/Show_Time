@@ -5,7 +5,7 @@ import Highlights from '../../components/UserPart/Filter.js'
 import SearchBar from '../../components/UserPart/SearchBar.js'
 import PostsManager from '../../components/UserPart/PostsManager.js'
 import DateFilter from '../../components/UserPart/DateFilter.js'
-import axios from 'axios';
+import axios from '../../../api/axios';
 
 const Home = () => {
   const [groups, setGroups] = useState([]);
@@ -30,7 +30,7 @@ const Home = () => {
   }
 
   const loadBands = () => {
-    axios.get('http://localhost:3000/bands')
+    axios.get('/bands')
       .then(result => {
         setGroups(result.data);
       })
@@ -40,7 +40,7 @@ const Home = () => {
   }
 
   const loadGenres = () => {
-    axios.get('http://localhost:3000/genres')
+    axios.get('/genres')
       .then(result => {
         setGenres(result.data);
       })
@@ -50,7 +50,7 @@ const Home = () => {
   }
 
   const loadConcerts = () => {
-    axios.get('http://localhost:3000/concerts')
+    axios.get('/concerts')
       .then(result => {
         setConcerts(result.data);
       })
@@ -60,7 +60,9 @@ const Home = () => {
   }
 
   const postWishlist = (userId, concertId) => {
-    axios.post('http://localhost:3000/users/like_concert/' + userId,
+    console.log('userId,', userId)
+    console.log('concertId,', concertId)
+    axios.put('/users/like_concert/' + userId,
     {
       concerts: concertId
     })
@@ -72,7 +74,7 @@ const Home = () => {
     })
   }
   const deleteWishlist = (userId, concertId) => {
-    axios.post('http://localhost:3000/users/unlike_concert/' + userId,
+    axios.put('/users/unlike_concert/' + userId,
     {
       concerts: concertId
     })
@@ -85,7 +87,7 @@ const Home = () => {
   }
 
   const bookingConcert = (userId, concertId) => {
-    axios.post('http://localhost:3000/bookings/',
+    axios.post('/bookings/',
     {
       user_id: userId,
       concert_id: concertId

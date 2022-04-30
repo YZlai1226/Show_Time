@@ -56,11 +56,11 @@ export default function RecipeReviewCard(props) {
             {props.group[0]?.name.substring(0, 1)}
           </Avatar>
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+        // action={
+        //   <IconButton aria-label="settings">
+        //     <MoreVertIcon />
+        //   </IconButton>
+        // }
         title={props.group[0]?.name}
         group='groupName'
         subheader={props.concert.date}
@@ -83,29 +83,32 @@ export default function RecipeReviewCard(props) {
       </CardContent>
 
       <CardActions disableSpacing>
+        {/* ===================== ADD WISHLIST ====================== */}
+        {
+          isInWishlist === false &&
+          <IconButton aria-label="add to favorites"
+            onClick={() => {
+              props.postWishlist('626c100d6bdf114a07577a35', props.concert._id);
+              changeIsInWishlist('626c100d6bdf114a07577a35', props.concert._id);
+            }}
+          >
+            <FavoriteBorderIcon />
+          </IconButton>
+        }
+
+        {/* =================== DELETE WISHLIST ==================== */}
         {
           isInWishlist === true &&
           <IconButton aria-label="add to favorites" color="primary"
             onClick={() => {
-              props.postWishlist('626c100d6bdf114a07577a35', props.concert.id);
-              changeIsInWishlist('626c100d6bdf114a07577a35', props.concert.id);
+              props.deleteWishlist('626c100d6bdf114a07577a35', props.concert._id);
+              changeIsInWishlist('626c100d6bdf114a07577a35', props.concert._id);
             }}
           >
             <FavoriteIcon />
           </IconButton>
         }
-        {
-          isInWishlist === false &&
-          <IconButton aria-label="add to favorites" 
-            onClick={() => {
-              props.deleteWishlist('626c100d6bdf114a07577a35', props.concert.id);
-              changeIsInWishlist('626c100d6bdf114a07577a35', props.concert.id);
-            }}
-          >
-            <FavoriteBorderIcon />
-          </IconButton>
-
-        }
+        {/* ======================================================== */}
 
         <IconButton aria-label="book concert" >
           <BasicModal bookingConcert={props.bookingConcert} concert={props.concert} />
