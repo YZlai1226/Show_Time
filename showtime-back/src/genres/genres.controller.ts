@@ -14,7 +14,7 @@ export class GenresController {
     return this.genresService.create(createGenreDto);
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get()
   findAll() {
     return this.genresService.findAll();
