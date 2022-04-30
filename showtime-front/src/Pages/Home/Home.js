@@ -5,7 +5,7 @@ import Highlights from '../../components/UserPart/Filter.js'
 import SearchBar from '../../components/UserPart/SearchBar.js'
 import PostsManager from '../../components/UserPart/PostsManager.js'
 import DateFilter from '../../components/UserPart/DateFilter.js'
-import axios from 'axios';
+import axios from './../../api/axios';
 
 const Home = () => {
   const [groups, setGroups] = useState([]);
@@ -30,7 +30,7 @@ const Home = () => {
   }
 
   const loadBands = () => {
-    axios.get('http://localhost:3000/bands')
+    axios.get('/bands')
       .then(result => {
         setGroups(result.data);
       })
@@ -40,7 +40,7 @@ const Home = () => {
   }
 
   const loadGenres = () => {
-    axios.get('http://localhost:3000/genres')
+    axios.get('/genres')
       .then(result => {
         setGenres(result.data);
       })
@@ -50,9 +50,10 @@ const Home = () => {
   }
 
   const loadConcerts = () => {
-    axios.get('http://localhost:3000/concerts')
+    axios.get('/concerts')
       .then(result => {
         setConcerts(result.data);
+        setFilteredConcerts(result.data);
       })
       .catch(err => {
         console.error(err.message, 'get concerts');
@@ -60,7 +61,9 @@ const Home = () => {
   }
 
   const postWishlist = (userId, concertId) => {
-    axios.post('http://localhost:3000/users/like_concert/' + userId,
+    console.log('userId,', userId)
+    console.log('concertId,', concertId)
+    axios.put('/users/like_concert/' + userId,
     {
       concerts: concertId
     })
@@ -72,7 +75,7 @@ const Home = () => {
     })
   }
   const deleteWishlist = (userId, concertId) => {
-    axios.post('http://localhost:3000/users/unlike_concert/' + userId,
+    axios.put('/users/unlike_concert/' + userId,
     {
       concerts: concertId
     })
@@ -85,7 +88,7 @@ const Home = () => {
   }
 
   const bookingConcert = (userId, concertId) => {
-    axios.post('http://localhost:3000/bookings/',
+    axios.post('/bookings/',
     {
       user_id: userId,
       concert_id: concertId
@@ -101,16 +104,18 @@ const Home = () => {
 
   const onDatesChange = (ranges) => {
     setSelectionRanges(ranges.selection);
+    // let date = new Date(concert.date)
     const filteredConcerts = concerts.filter((concert) => 
-      Date(concert.date)>ranges.selection.startDate);
+      new Date(concert.date)>ranges.selection.startDate && new Date(concert.date)<ranges.selection.endDate);
       setFilteredConcerts(filteredConcerts)
-    console.log('CONCERTDATE IS: ', Date(concerts[0].date))
-    console.log('CONCERTDATE IS: ', Date(concerts[1].date))
-    console.log('CONCERTDATE IS: ', Date(concerts[2].date))
-    console.log('CONCERTDATE IS: ', Date(concerts[3].date))
-    console.log('CONCERTDATE IS: ', Date(concerts[4].date))
-    console.log('CONCERTDATE IS: ', Date(concerts[5].date))
-    // console.log('RANGE IS: ', ranges)
+    
+    console.log('CONCERTDATE IS: ', concerts[0].date)
+    console.log('CONCERTDATE IS: ', new Date(concerts[1].date))
+    console.log('CONCERTDATE IS: ', new Date(concerts[2].date))
+    console.log('CONCERTDATE IS: ', new Date(concerts[3].date))
+    console.log('CONCERTDATE IS: ', new Date(concerts[4].date))
+    console.log('CONCERTDATE IS: ', new Date(concerts[5].date))
+    console.log('RANGE IS: ', ranges)
     // console.log('STARTDATE IS: ', ranges.selection.startDate)
     // console.log('ENDDATE IS: ', ranges.selection.endDate)
     // setFilteredConcerts(filteredConcerts.filter((concert) => Date(concert.date)>ranges.selection.startDate && concert.date<ranges.selection.endDate));
@@ -124,8 +129,15 @@ const Home = () => {
   // }
 
   const onGenreChange = (genre) => {
+    console.log('ongenrechange', genre._id)
+    console.log('ongenrechange concert.genrne_id', concerts[0].genre_id)
+    setFilteredConcerts(concerts.filter((concert) => concert.genre_id === genre._id))
+    console.log('filteredConcerts', filteredConcerts)
   }
-  const onGroupChange = (genre) => {
+  const onGroupChange = (group) => {
+    console.log('ongroupchange', group)
+    setFilteredConcerts(concerts.filter((concert) => concert.bands_id === group._id))
+    console.log('filteredConcerts', filteredConcerts)
   }
   return (
     <div class='home'>
@@ -133,7 +145,7 @@ const Home = () => {
       <div class='homePageContent'>
         <div class="posts">
           <PostsManager 
-            concerts={concerts} 
+            concerts={filteredConcerts} 
             groups={groups} 
             postWishlist={postWishlist}
             deleteWishlist={deleteWishlist}
