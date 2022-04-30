@@ -9,6 +9,10 @@ const postsManager = (props) => {
           concert={concert}
           key={concert._id}
           group={props.groups?.filter((group) => group._id === concert.band_id)}
+          postWishlist={props.postWishlist}
+          deleteWishlist={props.deleteWishlist}
+          bookingConcert={props.bookingConcert}
+          // concertId={props.concertId}
         />
       ))}
     </div>
