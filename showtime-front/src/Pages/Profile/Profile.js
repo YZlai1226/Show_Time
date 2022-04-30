@@ -52,13 +52,13 @@ const Profile = () => {
           })
     }
 
-    define
-fucntion = gettittleconcert (concert.array)
-for concert in concert.array
-axios.get('http://localhost:3000/concerts/{concerts}')
-OR 
-axios.get('http://localhost:3000/concerts/'+concert)
-result = concert.title
+    // define
+// fucntion = gettittleconcert (concert.array)
+// for concert in concert.array
+// axios.get('http://localhost:3000/concerts/{concerts}')
+// OR 
+// axios.get('http://localhost:3000/concerts/'+concert)
+// result = concert.title
      
 
 

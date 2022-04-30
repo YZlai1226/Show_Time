@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState /*, useEffect*/ } from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
 
 export default function Highlights(props) {
-  console.log('PROPS FILTER IS: ', props.filter)
-const [inputValue, setInputValue] = useState({ inputValue: '' });
+const [inputValue, setInputValue] = useState('');
+
+// const onChange =(inputValue) => {
+// setInputValue(inputValue);
+// };
 
   return (
     <Autocomplete
@@ -20,17 +23,11 @@ const [inputValue, setInputValue] = useState({ inputValue: '' });
         renderOption={(props, option, { inputValue }) => {
           const matches = match(option.name, inputValue);
         const parts = parse(option.name, matches);
-        // console.log('INPUTVALUE IS: ', inputValue)
-        // console.log('RENDEROPTION IS: ', renderOption)
-        // const listener = event => {
-          // if (event.key === 'Enter'){
-          //   console.log('enter pressed')
-          // }
-        // }
+          // console.log('INPUTVALUE: ', inputValue)
+          // console.log('LABEL: ', props.label)
         return (
           <li {...props}>
             <div>
-            {/* <div listener={listener}> */}
               {parts.map((part, index) => (
                 <span
                   key={index}

@@ -17,6 +17,7 @@ import Menu from '@mui/material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import BookIcon from '@mui/icons-material/Book';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 // import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
@@ -133,7 +134,7 @@ export default function PrimarySearchAppBar() {
       <MenuItem onClick={() => { handleMenuClose(); navigate("/wishlist"); }} >
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
-            <BookIcon />
+            <FavoriteIcon />
           </Badge>
         </IconButton>
         <p> Wishlist </p>
@@ -237,7 +238,7 @@ export default function PrimarySearchAppBar() {
 
             <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={() => { handleMenuClose(); navigate("/wishlist"); }} >
               <Badge badgeContent={4} color="error">
-                <BookIcon />
+                <FavoriteIcon />
               </Badge>
             </IconButton>
 
