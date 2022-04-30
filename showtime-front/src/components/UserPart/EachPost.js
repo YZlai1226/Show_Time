@@ -64,7 +64,7 @@ export default function RecipeReviewCard(props) {
         title={props.group[0]?.name}
         group='groupName'
         subheader={props.concert.date}
-      />
+        />
       <CardMedia
         component="img"
         height="194"

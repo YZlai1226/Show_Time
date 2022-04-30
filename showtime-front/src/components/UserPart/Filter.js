@@ -17,6 +17,7 @@ const [inputValue, setInputValue] = useState('');
       sx={{ width: 300 }}
       options={props.filter}
       getOptionLabel={(option) => option.name}
+      onChange={(event, value) => props.onChange(value)}
       renderInput={(params) => (
         <TextField {...params} label={props.label} margin="normal" />
         )}
