@@ -6,7 +6,8 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import axios from "axios";
+// import axios from "axios";
+import axios from '../../api/axios'
 
 
 export default function ShowUser() {
@@ -26,7 +27,7 @@ export default function ShowUser() {
       // !!! //
       // .get(`http://localhost:3000/users/${userId}`)
       // !!! //
-          .get(`http://localhost:3000/users/userdetails/626a916c6d02c3d72f1896f5`)
+          .get(`/users/userdetails/626a916c6d02c3d72f1896f5`)
           .then((res) => {
               console.log(res.data);
               setUser(res.data);
@@ -34,14 +35,14 @@ export default function ShowUser() {
           .catch((err) => {
               console.log(err);
           });
-          axios.get('http://localhost:3000/concerts')
+          axios.get('/concerts')
     .then(result => {
       setConcerts(result.data);
     })
     .catch(err => {
       console.error(err.message, 'get concerts');
     });
-    axios.get('http://localhost:3000/bands')
+    axios.get('/bands')
     .then(result => {
       setGroups(result.data);
     })
@@ -83,7 +84,7 @@ export default function ShowUser() {
             password: data.password,
         };
         axios
-            .put(`http://localhost:3000/users/${userId}`, user)
+            .put(`/users/${userId}`, user)
             .then((response) => {
                 console.log(response.status);
                 console.log(response.data);

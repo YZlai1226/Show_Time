@@ -12,17 +12,16 @@ export class UsersController {
     private readonly bookingsService: BookingsService,
   ) {}
 
-  @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Get()
   findAll() {
     return this.usersService.findAll();
   }
+  
   @UseGuards(JwtAuthGuard)
   @Get(':email')
   findOne(@Param('email') email: string) {

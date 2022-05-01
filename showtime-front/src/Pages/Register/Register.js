@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import SearchBar from '../../components/UserPart/SearchBar.js';
 import { Button, Container, Form} from 'react-bootstrap'
 import './Register.css'
-import axios from 'axios'
+// import axios from 'axios'
+import axios from '../../api/axios'
 import { useNavigate } from "react-router-dom";
 
 function Register () {
@@ -28,7 +29,7 @@ function Register () {
           email: userData.email,
           password: userData.password,
         };
-        axios.post("http://localhost:3000/auth/register", newUserData).then((response) => {
+        axios.post("/users", newUserData).then((response) => {
           console.log(response.status);
           console.log(response.data);
         });
