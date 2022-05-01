@@ -15,7 +15,7 @@ export default function Dashboard() {
   const [usersData, setUsersData] = useState([]);
   const [concertsData, setConcertsData] = useState([]);
 
-  // const [concert, setConcertData] = useState({}); 
+  // const [concert, setConcertData] = useState({});
   // get bookings
   useEffect(() => {
     axios
@@ -25,7 +25,6 @@ export default function Dashboard() {
         },
       })
       .then((res) => {
-        
         setBookingsData(res.data);
       })
       .catch((err) => {
@@ -67,36 +66,41 @@ export default function Dashboard() {
       });
   }, [token]);
   // concert
-  
+
   return (
     <>
       <Topbar />
       <Container>
         <h1 className="dashTitle"> Dashboard Home </h1>
-
       </Container>
       <Container>
         <Row>
           <Col>
             <Card sx={{ minWidth: 275 }}>
               <CardContent>
-                {
-                  bookingsData.length > 25 ? (
-                    <Typography variant="h4" component="div">
-                    Bookings <i style={{color: "green", fontSize: 30}} class="bi bi-graph-up-arrow"></i>
-                  </Typography>   
-                  ) : (
-                    <Typography variant="h4" component="div">
-                    Bookings <i style={{color: "red", fontSize: 30}} class="bi bi-graph-down-arrow"></i>
+                {bookingsData.length > 25 ? (
+                  <Typography variant="h4" component="div">
+                    Bookings{" "}
+                    <i
+                      style={{ color: "green", fontSize: 30 }}
+                      class="bi bi-graph-up-arrow"
+                    ></i>
                   </Typography>
-                  )
-                }
-                
+                ) : (
+                  <Typography variant="h4" component="div">
+                    Bookings{" "}
+                    <i
+                      style={{ color: "red", fontSize: 30 }}
+                      class="bi bi-graph-down-arrow"
+                    ></i>
+                  </Typography>
+                )}
+
                 <Typography sx={{ mb: 1.5 }} variant="h6" component="div">
-                  <strong>{bookingsData.length} </strong> 
+                  <strong>{bookingsData.length} </strong>
                 </Typography>
                 <Typography color="text.secondary" variant="body2">
-                  Last month: 25 bookings   
+                  Last month: 25 bookings
                 </Typography>
               </CardContent>
             </Card>
@@ -105,22 +109,28 @@ export default function Dashboard() {
           <Col>
             <Card sx={{ minWidth: 275 }}>
               <CardContent>
-              {
-                  usersData.length > 5  ? (
-                    <Typography variant="h4" component="div">
-                    Users <i style={{color: "green", fontSize: 30}} class="bi bi-graph-up-arrow"></i>
-                  </Typography>   
-                  ) : (
-                    <Typography variant="h4" component="div">
-                    Users <i style={{color: "red", fontSize: 30}} class="bi bi-graph-down-arrow"></i>
+                {usersData.length > 5 ? (
+                  <Typography variant="h4" component="div">
+                    Users{" "}
+                    <i
+                      style={{ color: "green", fontSize: 30 }}
+                      class="bi bi-graph-up-arrow"
+                    ></i>
                   </Typography>
-                  )
-                }
+                ) : (
+                  <Typography variant="h4" component="div">
+                    Users{" "}
+                    <i
+                      style={{ color: "red", fontSize: 30 }}
+                      class="bi bi-graph-down-arrow"
+                    ></i>
+                  </Typography>
+                )}
                 <Typography sx={{ mb: 1.5 }} variant="h6" component="div">
-                   <strong>{usersData.length}</strong>
+                  <strong>{usersData.length}</strong>
                 </Typography>
                 <Typography color="text.secondary" variant="body2">
-                  Last month: 5 users   
+                  Last month: 5 users
                 </Typography>
               </CardContent>
             </Card>
@@ -129,22 +139,28 @@ export default function Dashboard() {
           <Col>
             <Card sx={{ minWidth: 275 }}>
               <CardContent>
-              {
-                  concertsData.length > 10 ? (
-                    <Typography variant="h4" component="div">
-                    Concerts <i style={{color: "green", fontSize: 30}} class="bi bi-graph-up-arrow"></i>
-                  </Typography>   
-                  ) : (
-                    <Typography variant="h4" component="div">
-                    Concerts <i style={{color: "red", fontSize: 30}} class="bi bi-graph-down-arrow"></i>
+                {concertsData.length > 10 ? (
+                  <Typography variant="h4" component="div">
+                    Concerts{" "}
+                    <i
+                      style={{ color: "green", fontSize: 30 }}
+                      class="bi bi-graph-up-arrow"
+                    ></i>
                   </Typography>
-                  )
-                }
+                ) : (
+                  <Typography variant="h4" component="div">
+                    Concerts{" "}
+                    <i
+                      style={{ color: "red", fontSize: 30 }}
+                      class="bi bi-graph-down-arrow"
+                    ></i>
+                  </Typography>
+                )}
                 <Typography sx={{ mb: 1.5 }} variant="h6" component="div">
-                   <strong>{concertsData.length}</strong>
+                  <strong>{concertsData.length}</strong>
                 </Typography>
                 <Typography color="text.secondary" variant="body2">
-                  Last month: 10 concerts   
+                  Last month: 10 concerts
                 </Typography>
               </CardContent>
             </Card>
@@ -152,11 +168,10 @@ export default function Dashboard() {
         </Row>
       </Container>
       <Container>
-      {/* <div>
+        {/* <div>
         {concertsData.map( concert => (<p>{concert._id}</p>))}
       </div> */}
-             
       </Container>
-      </>
+    </>
   );
 }

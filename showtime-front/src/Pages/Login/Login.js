@@ -2,6 +2,7 @@
 import React, { useRef, useState, useEffect, useContext  } from "react";
 import AuthContext from "../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import SearchBar from '../../components/UserPart/SearchBar.js'
 
 import axios from '../../api/axios'
 import './Login.css'
@@ -79,7 +80,9 @@ const Login = () => {
     }
 
     return (
-        <div class="signIn">
+        <>
+        <SearchBar />
+        <div style={{margin: "auto", marginTop: 100}} class="signIn">
             <p ref= {errRef} className={errMsg ? "errmsg" :
             "offscreen"} aria-live="assertive">{errMsg}</p>
             <h1>Sign In</h1>
@@ -120,6 +123,7 @@ const Login = () => {
                 </span>
             </p>
         </div>
+        </>
     )
 }
 

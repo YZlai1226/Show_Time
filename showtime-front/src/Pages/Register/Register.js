@@ -36,15 +36,15 @@ function Register () {
         setTimeout(() => {
           navigate("/Login");
         }, 1500);
-        setTimeout(() => {
-          window.location.reload(false);
-        }, 2500);
+        
       };
     return (
         <>
         <SearchBar />
-        <Container >
-        <Form onSubmit={handleSubmit}>
+        <Container style={{ marginLeft: "auto", marginRight: "auto"}} >
+          
+        <Form style={{width: "50%", margin: "auto", marginTop: 50, backgroundColor: "#66c2ff", padding: 10 }} onSubmit={handleSubmit}>
+        <h1 style={{marginBottom: 50, textAlign: "center"}}>Register</h1>
           <Form.Group className="mb-3" controlId="formBasicA">
             <Form.Label>Name</Form.Label>
             <Form.Control
@@ -78,7 +78,7 @@ function Register () {
             />
           </Form.Group>
 
-          <Button className="mt-2" variant="primary" type="submit">
+          <Button style={{marginLeft: 260}} className="mt-2" variant="primary" type="submit">
             Submit
           </Button>
         </Form>

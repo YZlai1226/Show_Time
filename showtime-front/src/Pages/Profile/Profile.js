@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useNavigate, useParams, useResolvedPath } from "react-router-dom";
 import PostsManager from '../../components/UserPart/PostsManager.js'
@@ -8,6 +8,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 // import axios from "axios";
 import axios from '../../api/axios'
+import AuthContext from "../../context/AuthProvider";
 
 
 export default function ShowUser() {
@@ -18,6 +19,7 @@ export default function ShowUser() {
     const [groups, setGroups] = useState([]);
     const [concerts, setConcerts] = useState([]);
     const [UserConcerts, setUserConcerts] = useState([]);
+    const { auth, setAuth } = useContext(AuthContext);
     //////////////
     // Get user //
     //////////////
@@ -29,7 +31,7 @@ export default function ShowUser() {
       // !!! //
           .get(`/users/userdetails/626a916c6d02c3d72f1896f5`)
           .then((res) => {
-              console.log(res.data);
+              // console.log(res.data);
               setUser(res.data);
           })
           .catch((err) => {
@@ -51,7 +53,7 @@ export default function ShowUser() {
     });
     if (user !== {}) {
       getUserConcerts();
-      console.log("-------", user);
+      // console.log("-------", user);
      }
 
   }, [user]);
@@ -86,8 +88,8 @@ export default function ShowUser() {
         axios
             .put(`/users/${userId}`, user)
             .then((response) => {
-                console.log(response.status);
-                console.log(response.data);
+                // console.log(response.status);
+                // console.log(response.data);
             });
         window.location.reload(false);
     };
@@ -100,7 +102,8 @@ export default function ShowUser() {
         e.preventDefault();
         axios
             .delete(`http://localhost:3000/users/${userId}`)
-            .then((res) => console.log("deleted", res))
+            .then((res) => 
+            console.log("deleted", res))
             .catch((err) => console.log(err));
         setTimeout(() => {
             navigate("/");
@@ -117,10 +120,10 @@ export default function ShowUser() {
       // concerts.forEach({(concert) => { concert._id === user.concerts[i]}
       //   setUserConcerts([...UserConcerts, `Entry ${UserConcerts.length}`]));
       // }
-      console.log("UserConc", UserConcerts);
-      console.log("User.con", user.concerts);
+      // console.log("UserConc", UserConcerts);
+      // console.log("User.con", user.concerts);
       // console.log("concert._id", concerts[0]?._id);
-      console.log("+++++++", user);
+      // console.log("+++++++", user);
       }
 
     return (
@@ -222,6 +225,7 @@ export default function ShowUser() {
             </Col>
           </Row>
         </Container>
+        
    
       </>
     );
