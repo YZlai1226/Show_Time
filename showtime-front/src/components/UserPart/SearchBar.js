@@ -96,14 +96,12 @@ export default function PrimarySearchAppBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-<<<<<<< HEAD
   const handleLogout = () => {
     localStorage.removeItem('token');
     window.location.reload(false);
 
   }
 
-=======
   const debug = () => {
     console.log(auth);
     if (auth) {
@@ -114,7 +112,6 @@ export default function PrimarySearchAppBar() {
     }
   }
   debug()
->>>>>>> c9e615d7dbf1dcac4f4441796ad1b0ad1525f711
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
