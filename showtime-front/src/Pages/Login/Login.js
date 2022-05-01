@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import axios from '../../api/axios'
 import './Login.css'
+import { getMe } from '../../api/getUser'
 // import { set } from "date-fns";
 const LOGIN_URL = '/auth/login'
 
@@ -36,12 +37,27 @@ const Login = () => {
                         headers: { 'Content-Type': 'application/json'},
                         withCredentials: false
                     });
-            console.log(JSON.stringify(response?.data));
+            // console.log(JSON.stringify(response?.data));
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
             // console.log(`response?.data.access_token: ${response?.data.access_token.slice(1, -1)}`);
             localStorage.setItem("token", JSON.stringify(response?.data.access_token).slice(1, -1));
-            setAuth({user, pwd, roles, accessToken});
+            getMe().then((response) => {
+                console.log('++++++get me response+++++')
+                console.log(response)
+                console.log(`[+] Got user '${response.email}' with ID: '${response.userId}'`
+                            + ` isAdmin status: ${response.isAdmin}`)
+                console.log(`User is: ${response.email}`)
+                const userId = response?.userId;
+                const isAdmin = response?.isAdmin
+                // if (response.ok !== 1) {
+                //   localStorage.setItem("token", null);
+                //   setErrMsg(response.toString());
+                // }
+                setAuth({user, userId, pwd, isAdmin, roles, accessToken});
+
+            })
+                // setUser(response.data);
             setUser('');
             setPwd('');
             setTimeout(() => {
@@ -63,39 +79,47 @@ const Login = () => {
     }
 
     return (
-        <section>
+        <div class="signIn">
             <p ref= {errRef} className={errMsg ? "errmsg" :
             "offscreen"} aria-live="assertive">{errMsg}</p>
             <h1>Sign In</h1>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="email">Email:</label>
-                <input
-                    type="text"
-                    id="email"
-                    ref={userRef}
-                    autoComplete="off"
-                    onChange={(e) => setUser(e.target.value)}
-                    value={user}
-                    required
-                />
-
-                <label htmlFor="password">Password:</label>
-                <input
-                    type="password"
-                    id="password"
-                    onChange={(e) => setPwd(e.target.value)}
-                    value={pwd}
-                    required
-                />
-                <button>Sign In</button>
-            </form>
+            <div id="sign_in_form">
+                <form onSubmit={handleSubmit}>
+                    <div class="container">
+                        <label htmlFor="email">Email:</label>
+                        <br/>
+                        <input
+                            type="text"
+                            id="email"
+                            ref={userRef}
+                            autoComplete="off"
+                            onChange={(e) => setUser(e.target.value)}
+                            value={user}
+                            required
+                        />
+                        <br/>
+                        <label htmlFor="password">Password:</label>
+                        <br/>
+                        <input
+                            type="password"
+                            id="password"
+                            onChange={(e) => setPwd(e.target.value)}
+                            value={pwd}
+                            required
+                        />
+                        <br/>
+                        <br/>
+                        <button>Sign In</button>
+                    </div>
+                </form>
+            </div>
             <p>
                 Need an Account?<br />
                 <span className="line">
                     <a href="/register">Sing Up</a>
                 </span>
             </p>
-        </section>
+        </div>
     )
 }
 

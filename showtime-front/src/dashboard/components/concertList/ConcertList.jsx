@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
+import axios from '../../../api/axios'
 import { DataGrid } from "@mui/x-data-grid";
 
 export default function ConcertList() {
@@ -9,7 +10,7 @@ export default function ConcertList() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/concerts")
+      .get("/concerts")
       .then((res) => {
         console.log(res);
         setConcertsData(res.data);

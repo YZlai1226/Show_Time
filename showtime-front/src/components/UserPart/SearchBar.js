@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 // import Login from './../Pages/Login/Login.js'
 // import Register from './../Pages/Register/Register.js'
@@ -26,6 +26,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 // import LogoDevIcon from '@mui/icons-material/LogoDev';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import logoWhite from './../../images/LogoWhite.png'
+import AuthContext from "../../context/AuthProvider";
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -41,6 +42,8 @@ const Search = styled('div')(({ theme }) => ({
     width: 'auto',
   },
 }));
+
+const token = localStorage.getItem('token')
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
@@ -67,6 +70,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar(props) {
+  const { auth, setAuth } = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -92,6 +96,23 @@ export default function PrimarySearchAppBar(props) {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    window.location.reload(false);
+
+  }
+
+  const debug = () => {
+    console.log(auth);
+    if (auth) {
+      console.log('I am logged in !!!!!!!!!!!!!')
+    }
+    else {
+      console.log('nooooooooooooo')
+    }
+  }
+
+  debug()
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -131,6 +152,7 @@ export default function PrimarySearchAppBar(props) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+
       <MenuItem onClick={() => { handleMenuClose(); navigate("/wishlist"); }} >
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
@@ -179,8 +201,7 @@ export default function PrimarySearchAppBar(props) {
       </MenuItem>
 
 
-
-      <MenuItem onClick={() => {handleMenuClose(); navigate("/profile");}}>
+      <MenuItem onClick={() => { handleMenuClose(); navigate("/profile"); }}>
         <IconButton
           size="large"
           aria-label="account of current user"
@@ -223,57 +244,72 @@ export default function PrimarySearchAppBar(props) {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
-              // value={props.search}
-              // onChange={props.onSearchChange}
+            // value={props.search}
+            // onChange={props.onSearchChange}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
 
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={() => { handleMenuClose(); navigate("/Register"); }} >
-              <AppRegistrationIcon />
-            </IconButton>
+            {
+              !token ? (
+                <>
+                  <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={() => { handleMenuClose(); navigate("/Register"); }} >
+                    <AppRegistrationIcon />
+                    <p style={{ fontSize: 15, marginBottom: 0 }}> Register </p>
+                  </IconButton>
 
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={() => { handleMenuClose(); navigate("/Login"); }} >
-              <LoginIcon />
-            </IconButton>
+                  <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={() => { handleMenuClose(); navigate("/Login"); }} >
+                    <LoginIcon />
+                    <p style={{ fontSize: 15, marginBottom: 0 }}>Login</p>
+                  </IconButton>
 
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={() => { handleMenuClose(); navigate("/wishlist"); }} >
-              <Badge badgeContent={4} color="error">
-                <FavoriteIcon />
-              </Badge>
-            </IconButton>
+                  </>
+            ) : ( 
+              <>
+                  <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={() => { handleMenuClose(); navigate("/wishlist"); }} >
+                    <Badge badgeContent={4} color="error">
+                      <FavoriteIcon />
+                    </Badge>
+                  </IconButton>
 
-            {/* <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton> */}
+                  {/* <IconButton
+                    size="large"
+                    aria-label="show 1 new notifications"
+                    color="inherit"
+                  > */}
+                    {/* <Badge badgeContent={1} color="error">
+                      <NotificationsIcon />
+                    </Badge>
+                  </IconButton> */}
 
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <LogoutIcon />
-            </IconButton>
-
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={() => {handleMenuClose(); navigate("/profile")}
+                  <IconButton
+                    onClick={() => handleLogout()}
+                    size="large"
+                    aria-label="show 17 new notifications"
+                    color="inherit"
+                  >
+                    <LogoutIcon
+                    />
+                    <p style={{ fontSize: 15, marginBottom: 0 }}>Logout</p>
+                  </IconButton>
+                  <IconButton
+                    size="large"
+                    edge="end"
+                    aria-label="account of current user"
+                    aria-controls={menuId}
+                    aria-haspopup="true"
+                    onClick={() => { handleMenuClose(); navigate("/profile") }
+                    }
+                    color="inherit"
+                  >
+                    <AccountCircle />
+                  </IconButton>
+                </>
+              )
+            
             }
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
+
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton

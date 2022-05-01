@@ -19,10 +19,18 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     // console.log("++++password+++++")
     // console.log(payload.sub)
     // console.log("++++password+++++")
-    
+
+    // console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@');
+    // console.log(payload);
+    // console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@');
     // console.log("++++email+++++")
     // console.log(payload.email)
     // console.log("++++eami+++++")
-    return { password: payload.sub, email: payload.email };
+    return {
+      password: payload.sub,
+      email: payload.email,
+      userId: payload.userId,
+      isAdmin: payload.isAdmin,
+    };
   }
 }
