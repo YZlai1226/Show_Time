@@ -103,7 +103,7 @@ export default function PrimarySearchAppBar(props) {
   }
 
   const debug = () => {
-    console.log(auth);
+    console.log('SearchBar Auth is: ', auth);
     if (auth) {
       console.log('I am logged in !!!!!!!!!!!!!')
     }

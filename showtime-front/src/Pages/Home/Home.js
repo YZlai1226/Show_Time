@@ -13,6 +13,7 @@ const Home = () => {
   const [groups, setGroups] = useState([]);
   const [genres, setGenres] = useState([]);
   const [concerts, setConcerts] = useState([]);
+  const [userInfos, setUserInfos] = useState([]);
   const [filteredConcerts, setFilteredConcerts] = useState(concerts);
   const [selectionRanges, setSelectionRanges] = useState(({
     startDate: new Date(),
@@ -32,7 +33,22 @@ const Home = () => {
     loadConcerts();
     loadBookings();
   }
+  useEffect(() => {
+    if (auth) {
+    loadUserInfos();
+  }
+}, [auth])
 
+const loadUserInfos = () => {
+axios.get('/users/userdetails/' + auth.userId)
+    .then(result => {
+      setUserInfos(result.data);
+      // console.log('USERSINFOS ARE : ', userInfos)
+    })
+    .catch(err => {
+      console.error(err.message, 'get userInfos');
+    })
+  }
   const loadBands = () => {
     axios.get('/bands')
       .then(result => {
@@ -43,11 +59,11 @@ const Home = () => {
       })
   }
 
+
   const loadBookings = () => {
     axios.get('/bookings')
       .then(result => {
         setBookings(result.data);
-        // console.log('BOOKING IS: ', result.data)
       })
       .catch(err => {
         console.error(err.message, 'get bookings');
@@ -84,6 +100,7 @@ const Home = () => {
     })
     .then((response) => {
       console.log(response.data)
+      loadUserInfos();
     })
     .catch(err => {
       console.error(err.message, 'post wishlist');
@@ -96,6 +113,7 @@ const Home = () => {
     })
     .then((response) => {
       console.log(response.data)
+      loadUserInfos();
     })
     .catch(err => {
       console.error(err.message, 'delete wishlist');
@@ -115,7 +133,6 @@ const Home = () => {
     .catch(err => {
       console.error(err.message, 'delete wishlist');
     })
-    console.log('userInformations is: ', auth.userId)
   }
   
 
@@ -125,31 +142,13 @@ const Home = () => {
     const filteredConcerts = concerts.filter((concert) => 
       new Date(concert.date)>ranges.selection.startDate && new Date(concert.date)<ranges.selection.endDate);
       setFilteredConcerts(filteredConcerts)
-    
-    console.log('CONCERTDATE IS: ', concerts[0].date)
-    console.log('CONCERTDATE IS: ', new Date(concerts[1].date))
-    console.log('CONCERTDATE IS: ', new Date(concerts[2].date))
-    console.log('CONCERTDATE IS: ', new Date(concerts[3].date))
-    console.log('CONCERTDATE IS: ', new Date(concerts[4].date))
-    console.log('CONCERTDATE IS: ', new Date(concerts[5].date))
-    console.log('RANGE IS: ', ranges)
-    // console.log('STARTDATE IS: ', ranges.selection.startDate)
-    // console.log('ENDDATE IS: ', ranges.selection.endDate)
-    // setFilteredConcerts(filteredConcerts.filter((concert) => Date(concert.date)>ranges.selection.startDate && concert.date<ranges.selection.endDate));
-    console.log('filteredConcerts is: ', filteredConcerts)
   }
 
   const onGroupChange = (group) => {
-    console.log('ongroupchange', group._id)
     setFilteredConcerts(concerts.filter((concert) => concert.band_id === group._id))
-    console.log('filteredConcerts', filteredConcerts)
   }
   const onGenreChange = (genre) => {
-    console.log('genre._id', genre._id)
-    console.log('genre', genre)
-    console.log('ongenrechange concert.genrne_id', concerts[0].genre_id)
     setFilteredConcerts(concerts.filter((concert) => concert.genre_id === genre._id))
-    console.log('filteredConcerts', filteredConcerts)
   }
 
   const onSearchChange = (search) => {
@@ -166,6 +165,7 @@ const Home = () => {
             concerts={filteredConcerts} 
             groups={groups} 
             bookings={bookings}
+            userInfos={userInfos}
             postWishlist={postWishlist}
             deleteWishlist={deleteWishlist}
             bookingConcert={bookingConcert}
@@ -175,7 +175,6 @@ const Home = () => {
           <Highlights class="highlights" filter={groups} label="Artist" onChange={onGroupChange} />
           <Highlights class="highlights" filter={genres} label="Genre" onChange={onGenreChange} />
           <DateFilter onDatesChange={onDatesChange} selectionRanges={selectionRanges} />
-          {console.log('selectionRanges is :', selectionRanges)}
         </div>
       </div>
     </div>
