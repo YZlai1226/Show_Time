@@ -42,11 +42,6 @@ export default function RecipeReviewCard(props) {
     setExpanded(!expanded);
   };
 
-  const [isInWishlist, setIsInWishlist] = useState(false);
-
-  const changeIsInWishlist = () => {
-    setIsInWishlist(!isInWishlist)
-  }
   return (
     <Card sx={{
       maxWidth: 700,
@@ -80,21 +75,20 @@ export default function RecipeReviewCard(props) {
         }}
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="h5" color="black">
           {props.concert.title}
         </Typography>
       </CardContent>
 
       <CardActions disableSpacing>
-        {auth &&
+        {auth && typeof props.userInfos?.concerts !== 'undefined' &&
           <div>
             {/* ===================== ADD WISHLIST ====================== */}
             {
-              isInWishlist === false &&
+              (props.userInfos.concerts.filter((e) => e === props.concert._id).length === 0) &&
               <IconButton aria-label="add to favorites"
                 onClick={() => {
                   props.postWishlist(auth.userId, props.concert._id);
-                  changeIsInWishlist(auth.userId, props.concert._id);
                 }}
               >
                 <FavoriteBorderIcon />
@@ -103,11 +97,10 @@ export default function RecipeReviewCard(props) {
 
             {/* =================== DELETE WISHLIST ==================== */}
             {
-              isInWishlist === true &&
+              (props.userInfos.concerts.filter((e) => e === props.concert._id).length > 0) &&
               <IconButton aria-label="add to favorites" color="primary"
                 onClick={() => {
                   props.deleteWishlist(auth.userId, props.concert._id);
-                  changeIsInWishlist(auth.userId, props.concert._id);
                 }}
               >
                 <FavoriteIcon />
