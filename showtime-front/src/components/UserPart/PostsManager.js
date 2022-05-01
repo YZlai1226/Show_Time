@@ -8,6 +8,7 @@ const postsManager = (props) => {
         <RecipeReviewCard
           concert={concert}
           key={concert._id}
+          bookings={props.bookings}
           group={props.groups?.filter((group) => group._id === concert.band_id)}
           postWishlist={props.postWishlist}
           deleteWishlist={props.deleteWishlist}
