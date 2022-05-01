@@ -3,17 +3,40 @@ body {
 }
 
 .signIn {
-    width: 300px;
-    height: 100px;
+    width: 400px;
+    height: 400px;
 
-    margin-left: 700px;
+    margin-left: 650px;
     margin-right: 300px;
     margin-top: 200px;
     margin-bottom: 260px;
+    text-align: center;
 
 }
 
 .sign_in_form {
     text-align: center;
+    background-color: #0047b3;
+}
+
+label {
+    font-size: 20px;
+    border-radius: 20px;
+}
+
+input {
+    border-radius: 5px;
+}
+
+button {
+    border-radius: 5px;
+    height: 35px;
+    width: 68%;
+    font-size: 20px;
+    text-align: center;
+    padding-bottom: 5px;
+    background-color: #0052cc;
+    color: white;
+    border-color: transparent;
 }
 

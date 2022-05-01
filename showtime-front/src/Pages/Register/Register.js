@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SearchBar from '../../components/UserPart/SearchBar.js';
-import { Container, Form} from 'react-bootstrap'
+import { Button, Container, Form} from 'react-bootstrap'
 import './Register.css'
 import axios from 'axios'
 
