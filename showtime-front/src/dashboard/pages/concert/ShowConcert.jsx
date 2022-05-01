@@ -186,7 +186,7 @@ export default function ShowConcert() {
                   <Form.Label>seats</Form.Label>
                   <Form.Control
                     name="seat_amount"
-                    value={data.seat_amount}
+                    value={data.seat_amount }
                     onChange={handleChange}
                     type="text"
                     placeholder={concert.seat_amount}
