@@ -26,6 +26,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 // import LogoDevIcon from '@mui/icons-material/LogoDev';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import logoWhite from './../../images/LogoWhite.png'
+
+
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -41,6 +43,8 @@ const Search = styled('div')(({ theme }) => ({
     width: 'auto',
   },
 }));
+
+const token = localStorage.getItem('token')
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
@@ -92,6 +96,12 @@ export default function PrimarySearchAppBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    window.location.reload(false);
+
+  }
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -131,6 +141,7 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+      
       <MenuItem onClick={() => { handleMenuClose(); navigate("/wishlist"); }} >
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
@@ -152,7 +163,7 @@ export default function PrimarySearchAppBar() {
         </IconButton>
         <p>Notifications</p>
       </MenuItem>
-
+      
       <MenuItem onClick={() => { handleMenuClose(); navigate("/register"); }} >
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <AppRegistrationIcon />
@@ -228,38 +239,48 @@ export default function PrimarySearchAppBar() {
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
 
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={() => { handleMenuClose(); navigate("/Register"); }} >
+            {
+              !token ? ( 
+              <>
+              <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={() => { handleMenuClose(); navigate("/Register"); }} >
               <AppRegistrationIcon />
+              <p style={{fontSize: 15, marginBottom: 0}}> Register </p>
             </IconButton>
 
             <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={() => { handleMenuClose(); navigate("/Login"); }} >
               <LoginIcon />
+              <p style={{fontSize: 15, marginBottom: 0}}>Login</p>
             </IconButton>
 
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={() => { handleMenuClose(); navigate("/wishlist"); }} >
-              <Badge badgeContent={4} color="error">
-                <FavoriteIcon />
-              </Badge>
-            </IconButton>
-
-            <IconButton
+            
+            </>
+            ) : ( 
+              <>
+              <IconButton
               size="large"
-              aria-label="show 17 new notifications"
+              aria-label="show 1 new notifications"
               color="inherit"
             >
-              <Badge badgeContent={17} color="error">
+              <Badge badgeContent={1} color="error">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
 
-            <IconButton
+            <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={() => { handleMenuClose(); navigate("/wishlist"); }} >
+            <Badge badgeContent={4} color="error">
+              <FavoriteIcon />
+            </Badge>
+          </IconButton>
+          <IconButton
+              onClick={() => handleLogout()}
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
             >
-              <LogoutIcon />
+              <LogoutIcon 
+              />
+              <p style={{fontSize: 15, marginBottom: 0}}>Logout</p>
             </IconButton>
-
             <IconButton
               size="large"
               edge="end"
@@ -271,6 +292,11 @@ export default function PrimarySearchAppBar() {
             >
               <AccountCircle />
             </IconButton>
+          </>
+          )
+            
+            } 
+
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
