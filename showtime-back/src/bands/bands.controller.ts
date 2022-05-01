@@ -12,7 +12,7 @@ export class BandsController {
   create(@Body() createBandDto: CreateBandDto) {
     return this.bandsService.create(createBandDto);
   }
-
+  @UseGuards(JwtAuthGuard)
   @Get()
   findAll() {
     return this.bandsService.findAll();

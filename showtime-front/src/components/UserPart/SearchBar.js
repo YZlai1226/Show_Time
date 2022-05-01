@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 // import Login from './../Pages/Login/Login.js'
 // import Register from './../Pages/Register/Register.js'
@@ -26,8 +26,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 // import LogoDevIcon from '@mui/icons-material/LogoDev';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import logoWhite from './../../images/LogoWhite.png'
-
-
+import AuthContext from "../../context/AuthProvider";
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -71,6 +70,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
+  const { auth, setAuth } = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -96,12 +96,25 @@ export default function PrimarySearchAppBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+<<<<<<< HEAD
   const handleLogout = () => {
     localStorage.removeItem('token');
     window.location.reload(false);
 
   }
 
+=======
+  const debug = () => {
+    console.log(auth);
+    if (auth) {
+      console.log('I am logged in !!!!!!!!!!!!!')
+    }
+    else {
+      console.log('nooooooooooooo')
+    }
+  }
+  debug()
+>>>>>>> c9e615d7dbf1dcac4f4441796ad1b0ad1525f711
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -179,16 +192,15 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
 
       <MenuItem onClick={() => { handleMenuClose(); navigate("/"); }}>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <LogoutIcon />
-        </IconButton>
-        <p>Log Out</p>
-      </MenuItem>
-
+      <IconButton
+        size="large"
+        aria-label="show 17 new notifications"
+        color="inherit"
+      >
+        <LogoutIcon />
+      </IconButton>
+      <p>Log Out</p>
+    </MenuItem>
 
 
       <MenuItem onClick={handleProfileMenuOpen}>

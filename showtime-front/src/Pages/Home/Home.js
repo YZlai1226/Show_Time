@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Home.css'
 import Highlights from '../../components/UserPart/Filter.js'
 import SearchBar from '../../components/UserPart/SearchBar.js'

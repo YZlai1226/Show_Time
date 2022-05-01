@@ -1,0 +1,19 @@
+body {
+    background-color: #66c2ff;
+}
+
+.signIn {
+    width: 300px;
+    height: 100px;
+
+    margin-left: 700px;
+    margin-right: 300px;
+    margin-top: 200px;
+    margin-bottom: 260px;
+
+}
+
+.sign_in_form {
+    text-align: center;
+}
+

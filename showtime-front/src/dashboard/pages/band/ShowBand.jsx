@@ -5,7 +5,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import axios from "axios";
+// import axios from "axios";
+import axios from '../../../api/axios'
 
 export default function ShowUser() {
   let { bandId } = useParams();
@@ -15,7 +16,7 @@ export default function ShowUser() {
   // Get band
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/bands/${bandId}`)
+      .get(`/bands/${bandId}`)
       .then((res) => {
         console.log(res);
         setBandData(res.data);
@@ -43,7 +44,7 @@ export default function ShowUser() {
       name: data.name,
     };
     axios
-      .put(`http://localhost:3000/bands/${bandId}`, bandData)
+      .put(`/bands/${bandId}`, bandData)
       .then((response) => {
         console.log(response.status);
         console.log(response.data);
@@ -56,7 +57,7 @@ export default function ShowUser() {
   const deleteBand = (bandId, e) => {
     e.preventDefault();
     axios
-      .delete(`http://localhost:3000/bands/${bandId}`)
+      .delete(`/bands/${bandId}`)
       .then((res) => console.log("deleted", res))
       .catch((err) => console.log(err));
     setTimeout(() => {

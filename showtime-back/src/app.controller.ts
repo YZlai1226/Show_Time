@@ -39,7 +39,7 @@ export class AppController {
   @Get('profile')
   getProfile(@Request() req) {
     // console.log("======req.user======")
-    // console.log(req.user)
+    console.log(req.user);
     // console.log("======req.user======")
     return req.user;
   }
