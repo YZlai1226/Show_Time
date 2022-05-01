@@ -62,7 +62,7 @@ const Login = () => {
             setPwd('');
             setTimeout(() => {
                 navigate("/");
-              }, 1500);
+              }, 150000);
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
