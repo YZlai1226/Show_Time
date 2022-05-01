@@ -27,11 +27,7 @@ export default function BasicModal(props) {
   const handleClose = () => setOpen(false);
 
   if (props.bookings) {
-    console.log('BOOKING IS: ', props.bookings)
-
-
     if (props.bookings.filter((e) => e.user_id === auth.userId && e.concert_id === props.concert._id).length > 0) {
-      console.log('BOOKING FILTERED IS: ', props.bookings.filter((e) => e.user_id === auth.userId && e.concert_id === props.concert._id))
       return (
         <BookIcon color="primary" />
       )

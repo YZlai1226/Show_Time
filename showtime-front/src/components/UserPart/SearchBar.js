@@ -155,14 +155,14 @@ export default function PrimarySearchAppBar(props) {
 
       <MenuItem onClick={() => { handleMenuClose(); navigate("/wishlist"); }} >
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
+          <Badge badgeContent={props.wishlistNumber} color="error">
             <FavoriteIcon />
           </Badge>
         </IconButton>
         <p> Wishlist </p>
       </MenuItem>
 
-      <MenuItem onClick={handleMenuClose}>
+      {/* <MenuItem onClick={handleMenuClose}>
         <IconButton
           size="large"
           aria-label="show 17 new notifications"
@@ -173,7 +173,7 @@ export default function PrimarySearchAppBar(props) {
           </Badge>
         </IconButton>
         <p>Notifications</p>
-      </MenuItem>
+      </MenuItem> */}
 
       <MenuItem onClick={() => { handleMenuClose(); navigate("/register"); }} >
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
@@ -268,7 +268,7 @@ export default function PrimarySearchAppBar(props) {
             ) : ( 
               <>
                   <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={() => { handleMenuClose(); navigate("/wishlist"); }} >
-                    <Badge badgeContent={4} color="error">
+                    <Badge badgeContent={props.wishlistNumber} color="error">
                       <FavoriteIcon />
                     </Badge>
                   </IconButton>
