@@ -75,7 +75,7 @@ export default function RecipeReviewCard(props) {
         }}
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="h5" color="black">
           {props.concert.title}
         </Typography>
       </CardContent>

@@ -156,7 +156,7 @@ axios.get('/users/userdetails/' + auth.userId)
   return (
     <div class='home'>
       <SearchBar class="searchbar" 
-      wishlistNumber={userInfos.concerts.length}
+      wishlistNumber={userInfos?.concerts?.length}
       onSearchChange={onSearchChange}
       search={search}/>
       <div class='homePageContent'>
