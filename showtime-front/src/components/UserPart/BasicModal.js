@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, { useState, useContext } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import BookIcon from '@mui/icons-material/Book';
 import IconButton from '@mui/material/IconButton';
+import AuthContext from "../../context/AuthProvider"
 
 
 const style = {
@@ -20,14 +21,21 @@ const style = {
 };
 
 export default function BasicModal(props) {
+  const { auth, setAuth } = useContext(AuthContext);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [isBooked, setIsBooked] = useState(false);
-  const changeIsBooked = () => {
-    setIsBooked(!isBooked)
-  }
-  if (isBooked === false) {
+
+  if (props.bookings) {
+    console.log('BOOKING IS: ', props.bookings)
+
+
+    if (props.bookings.filter((e) => e.user_id === auth.userId && e.concert_id === props.concert._id).length > 0) {
+      console.log('BOOKING FILTERED IS: ', props.bookings.filter((e) => e.user_id === auth.userId && e.concert_id === props.concert._id))
+      return (
+        <BookIcon color="primary" />
+      )
+    }
     return (
       <div>
         <IconButton onClick={handleOpen}>
@@ -48,8 +56,7 @@ export default function BasicModal(props) {
               sx={{ mt: 2 }}
               onClick={() => {
                 // console.log(props.concert._id)
-                props.bookingConcert('626a91ee6d02c3d72f1896ff', props.concert._id);
-                changeIsBooked();
+                props.bookingConcert(auth.userId, props.concert._id);
                 handleClose();
               }}>
               Yes
@@ -62,7 +69,5 @@ export default function BasicModal(props) {
       </div>
     );
   }
-  return (
-    <BookIcon color="primary" />
-  )
+
 }

@@ -6,8 +6,10 @@ import SearchBar from '../../components/UserPart/SearchBar.js'
 import PostsManager from '../../components/UserPart/PostsManager.js'
 import DateFilter from '../../components/UserPart/DateFilter.js'
 import axios from './../../api/axios';
+import AuthContext from "../../context/AuthProvider"
 
 const Home = () => {
+  const {auth, setAuth} = useContext(AuthContext);
   const [groups, setGroups] = useState([]);
   const [genres, setGenres] = useState([]);
   const [concerts, setConcerts] = useState([]);
@@ -17,8 +19,8 @@ const Home = () => {
     endDate: new Date(),
     key: 'selection',
   }), []);
+  const [bookings, setBookings] = useState([]);
   const [search, setSearch] = useState('');
-  // const userId = "626c100d6bdf114a07577a35"
   
   useEffect(() => {
     init();
@@ -28,6 +30,7 @@ const Home = () => {
     loadBands();
     loadGenres();
     loadConcerts();
+    loadBookings();
   }
 
   const loadBands = () => {
@@ -36,7 +39,18 @@ const Home = () => {
         setGroups(result.data);
       })
       .catch(err => {
-        console.error(err.message, 'get group');
+        console.error(err.message, 'get groups');
+      })
+  }
+
+  const loadBookings = () => {
+    axios.get('/bookings')
+      .then(result => {
+        setBookings(result.data);
+        // console.log('BOOKING IS: ', result.data)
+      })
+      .catch(err => {
+        console.error(err.message, 'get bookings');
       })
   }
 
@@ -96,10 +110,12 @@ const Home = () => {
     })
     .then((response) => {
       console.log(response.data)
+      loadBookings();
     })
     .catch(err => {
       console.error(err.message, 'delete wishlist');
     })
+    console.log('userInformations is: ', auth.userId)
   }
   
 
@@ -149,6 +165,7 @@ const Home = () => {
           <PostsManager 
             concerts={filteredConcerts} 
             groups={groups} 
+            bookings={bookings}
             postWishlist={postWishlist}
             deleteWishlist={deleteWishlist}
             bookingConcert={bookingConcert}
