@@ -6,7 +6,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import axios from "axios";
+import axios from '../../../api/axios'
 
 export default function ShowUser() {
   let { userId } = useParams();
@@ -65,6 +65,7 @@ export default function ShowUser() {
         }
       })
       .then((response) => {
+        console.log('here in put request')
         console.log(response.status);
         console.log(response.data);
       });
@@ -79,7 +80,7 @@ export default function ShowUser() {
   const deleteUser = (userId, e) => {
     e.preventDefault();
     axios
-      .delete(`http://localhost:3000/users/${userId}`)
+      .delete(`/users/${userId}`)
       .then((res) => console.log("deleted", res))
       .catch((err) => console.log(err));
     setTimeout(() => {
@@ -87,6 +88,8 @@ export default function ShowUser() {
     }, 1500);
   };
 
+  console.log('========user=======')
+  console.log(user)
   return (
     <>
       <Topbar />

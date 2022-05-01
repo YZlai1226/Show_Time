@@ -5,7 +5,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import axios from "axios";
+// import axios from "axios";
+import axios from '../../../api/axios'
 
 export default function ShowUser() {
   let token = localStorage.getItem('token');
@@ -18,7 +19,7 @@ export default function ShowUser() {
   // Get genre
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/genres/${genreId}`)
+      .get(`/genres/${genreId}`)
       .then((res) => {
         console.log(res);
         setGenreData(res.data);
@@ -63,7 +64,7 @@ export default function ShowUser() {
   const deleteGenre = (genreId, e) => {
     e.preventDefault();
     axios
-      .delete(`http://localhost:3000/genres/${genreId}`)
+      .delete(`/genres/${genreId}`)
       .then((res) => console.log("deleted", res))
       .catch((err) => console.log(err));
     setTimeout(() => {

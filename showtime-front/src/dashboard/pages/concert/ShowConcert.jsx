@@ -6,7 +6,8 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import axios from "axios";
+// import axios from "axios";
+import axios from '../../../api/axios'
 
 export default function ShowConcert() {
   let navigate = useNavigate();
@@ -17,7 +18,7 @@ export default function ShowConcert() {
   // Get concert
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/concerts/${concertId}`)
+      .get(`/concerts/${concertId}`)
       .then((res) => {
         console.log(res);
         setConcertData(res.data);
@@ -77,7 +78,7 @@ export default function ShowConcert() {
   const deleteConcert = (concertId, e) => {
     e.preventDefault();
     axios
-      .delete(`http://localhost:3000/concerts/${concertId}`)
+      .delete(`/concerts/${concertId}`)
       .then((res) => console.log("deleted", res))
       .catch((err) => console.log(err));
     setTimeout(() => {
