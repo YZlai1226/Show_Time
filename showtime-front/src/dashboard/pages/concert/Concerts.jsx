@@ -56,7 +56,6 @@ function MyVerticallyCenteredModal(props) {
 
     const newConcertData = {
       seat_amount: concertData.seat_amount,
-      image: concertData.image,
       title: concertData.title,
       description: concertData.description,
       date: concertData.date,

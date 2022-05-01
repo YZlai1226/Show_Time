@@ -226,6 +226,7 @@ export default function PrimarySearchAppBar(props) {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
+            onClick={() => { handleMenuClose(); navigate("/"); }}
           >
             <img src={logoWhite} alt='Logo' width="50" />
           </IconButton>
@@ -267,11 +268,31 @@ export default function PrimarySearchAppBar(props) {
                   </>
             ) : ( 
               <>
+              {
+                auth.isAdmin ? (
+                  <>
                   <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={() => { handleMenuClose(); navigate("/wishlist"); }} >
                     <Badge badgeContent={props.wishlistNumber} color="error">
                       <FavoriteIcon />
                     </Badge>
                   </IconButton>
+
+                  <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={() => { handleMenuClose(); navigate("/dashboard"); }} >
+                    <AppRegistrationIcon />
+                    <p style={{ fontSize: 15, marginBottom: 0 }}> Admin </p>
+                  </IconButton>
+                  </>
+                  ) : (
+                    <>
+                    <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={() => { handleMenuClose(); navigate("/wishlist"); }} >
+                    <Badge badgeContent={props.wishlistNumber} color="error">
+                      <FavoriteIcon />
+                    </Badge>
+                  </IconButton>
+                  </>
+                  )
+                }
+                {console.log('auth is ', auth)}
 
                   {/* <IconButton
                     size="large"
