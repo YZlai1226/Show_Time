@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Topbar from "./../../components/topbar/Topbar";
 import UserList from "../../components/userList/UserList";
 import { Container, Button, Modal, Form } from "react-bootstrap";
-import axios from "axios";
+import axios from '../../../api/axios'
 
 export default function Users() {
   const [modalShow, setModalShow] = React.useState(false);
@@ -56,7 +56,7 @@ function MyVerticallyCenteredModal(props) {
       email: userData.email,
       password: userData.password,
     };
-    axios.post("http://localhost:3000/users", newUserData).then((response) => {
+    axios.post("/users", newUserData).then((response) => {
       console.log(response.status);
       console.log(response.data);
     });
