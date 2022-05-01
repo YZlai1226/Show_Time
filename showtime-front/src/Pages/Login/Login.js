@@ -86,9 +86,9 @@ const Login = () => {
             <div id="sign_in_form">
                 <form onSubmit={handleSubmit}>
                     <div class="container">
-                        <label htmlFor="email">Email:</label>
+                        <label class="login_label" htmlFor="email">Email:</label>
                         <br/>
-                        <input
+                        < input class="login_input" 
                             type="text"
                             id="email"
                             ref={userRef}
@@ -98,9 +98,9 @@ const Login = () => {
                             required
                         />
                         <br/>
-                        <label htmlFor="password">Password:</label>
+                        <label class="login_label" htmlFor="password">Password:</label>
                         <br/>
-                        <input
+                        < input class="login_input"
                             type="password"
                             id="password"
                             onChange={(e) => setPwd(e.target.value)}
@@ -109,7 +109,7 @@ const Login = () => {
                         />
                         <br/>
                         <br/>
-                        <button>Sign In</button>
+                        <button class="login_button">Sign In</button>
                     </div>
                 </form>
             </div>

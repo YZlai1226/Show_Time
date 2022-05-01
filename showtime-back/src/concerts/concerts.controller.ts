@@ -11,6 +11,7 @@ export class ConcertsController {
     private readonly concertsService: ConcertsService,
     private readonly bookingsService: BookingsService,
   ) {}
+
   @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() createConcertDto: CreateConcertDto) {
