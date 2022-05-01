@@ -12,11 +12,16 @@ export default function ShowUser() {
   let { userId } = useParams();
   let navigate = useNavigate();
   const [user, setUserData] = useState({});
+  let token = localStorage.getItem('token');
 
   // Get user
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/users/${userId}`)
+      .get(`http://localhost:3000/users/userdetails/${userId}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
       .then((res) => {
         console.log(res);
         setUserData(res.data);
@@ -24,7 +29,7 @@ export default function ShowUser() {
       .catch((err) => {
         console.log(err);
       });
-  }, [userId]);
+  }, [token, userId]);
 
   const [data, setData] = useState({
     name: "",
@@ -54,12 +59,19 @@ export default function ShowUser() {
       avatar: data.avatar
     };
     axios
-      .put(`http://localhost:3000/users/${userId}`, userData)
+      .put(`http://localhost:3000/users/${userId}`, userData, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
       .then((response) => {
         console.log(response.status);
         console.log(response.data);
       });
-    window.location.reload(false);
+      setTimeout(() => {
+        window.location.reload(false);
+      }, 1500);
+    
   };
 
   // Delete User

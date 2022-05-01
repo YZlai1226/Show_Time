@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import axios from '../../../api/axios'
 
 export default function ShowUser() {
+  let token = localStorage.getItem('token');
   let { bandId } = useParams();
   let navigate = useNavigate();
   const [band, setBandData] = useState({});
@@ -44,12 +45,18 @@ export default function ShowUser() {
       name: data.name,
     };
     axios
-      .put(`/bands/${bandId}`, bandData)
+      .put(`/bands/${bandId}`, bandData, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
       .then((response) => {
         console.log(response.status);
         console.log(response.data);
       });
-    window.location.reload(false);
+      setTimeout(() => {
+        window.location.reload(false);
+      }, 1500);
   };
 
   // Delete User

@@ -12,6 +12,7 @@ export default function ShowConcert() {
   let navigate = useNavigate();
   let { concertId } = useParams();
   const [concert, setConcertData] = useState({});
+  let token = localStorage.getItem('token');
 
   // Get concert
   useEffect(() => {
@@ -57,12 +58,18 @@ export default function ShowConcert() {
       genre_id: data.genre_id,
     };
     axios
-      .put(`http://localhost:3000/concerts/${concertId}`, newConcertData)
+      .put(`http://localhost:3000/concerts/${concertId}`, newConcertData, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
       .then((response) => {
         console.log(response.status);
         console.log(response.data);
       });
-    window.location.reload(false);
+      setTimeout(() => {
+        window.location.reload(false);
+      }, 1500);
   };
 
   // Delete concert

@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import axios from "axios";
 
 export default function ShowUser() {
+  let token = localStorage.getItem('token');
   let { genreId } = useParams();
   let navigate = useNavigate();
   const [genre, setGenreData] = useState({});
@@ -43,12 +44,18 @@ export default function ShowUser() {
       name: data.name,
     };
     axios
-      .put(`http://localhost:3000/genres/${genreId}`, genreData)
+      .put(`http://localhost:3000/genres/${genreId}`, genreData, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
       .then((response) => {
         console.log(response.status);
         console.log(response.data);
       });
-    window.location.reload(false);
+      setTimeout(() => {
+        window.location.reload(false);
+      }, 1500);
   };
 
   // Delete User
