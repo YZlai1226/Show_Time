@@ -3,8 +3,10 @@ import SearchBar from '../../components/UserPart/SearchBar.js';
 import { Button, Container, Form} from 'react-bootstrap'
 import './Register.css'
 import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 function Register () {
+    let navigate = useNavigate();
     const [userData, setData] = useState({
         name: "",
         email: "",
@@ -30,6 +32,9 @@ function Register () {
           console.log(response.status);
           console.log(response.data);
         });
+        setTimeout(() => {
+          navigate("/Login");
+        }, 1500);
         setTimeout(() => {
           window.location.reload(false);
         }, 2500);

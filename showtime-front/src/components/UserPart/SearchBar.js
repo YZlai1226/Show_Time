@@ -102,17 +102,17 @@ export default function PrimarySearchAppBar(props) {
 
   }
 
-  const debug = () => {
-    console.log(auth);
-    if (auth) {
-      console.log('I am logged in !!!!!!!!!!!!!')
-    }
-    else {
-      console.log('nooooooooooooo')
-    }
-  }
+  // const debug = () => {
+  //   console.log(auth);
+  //   if (auth) {
+  //     console.log('I am logged in !!!!!!!!!!!!!')
+  //   }
+  //   else {
+  //     console.log('nooooooooooooo')
+  //   }
+  // }
 
-  debug()
+  // debug()
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -252,7 +252,7 @@ export default function PrimarySearchAppBar(props) {
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
 
             {
-              !token ? (
+              !auth ? (
                 <>
                   <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={() => { handleMenuClose(); navigate("/Register"); }} >
                     <AppRegistrationIcon />
