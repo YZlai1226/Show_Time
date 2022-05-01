@@ -122,21 +122,16 @@ const Home = () => {
     console.log('filteredConcerts is: ', filteredConcerts)
   }
 
-  // const [inputValue, setInputValue] = useState({ inputValue: '' });
-
-  // const onFilterChange = (filter) => {
-  //   setInputValue(filter);
-  // }
-
-  const onGenreChange = (genre) => {
-    console.log('ongenrechange', genre._id)
-    console.log('ongenrechange concert.genrne_id', concerts[0].genre_id)
-    setFilteredConcerts(concerts.filter((concert) => concert.genre_id === genre._id))
+  const onGroupChange = (group) => {
+    console.log('ongroupchange', group._id)
+    setFilteredConcerts(concerts.filter((concert) => concert.band_id === group._id))
     console.log('filteredConcerts', filteredConcerts)
   }
-  const onGroupChange = (group) => {
-    console.log('ongroupchange', group)
-    setFilteredConcerts(concerts.filter((concert) => concert.bands_id === group._id))
+  const onGenreChange = (genre) => {
+    console.log('genre._id', genre._id)
+    console.log('genre', genre)
+    console.log('ongenrechange concert.genrne_id', concerts[0].genre_id)
+    setFilteredConcerts(concerts.filter((concert) => concert.genre_id === genre._id))
     console.log('filteredConcerts', filteredConcerts)
   }
   return (
