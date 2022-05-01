@@ -17,6 +17,7 @@ const Home = () => {
     endDate: new Date(),
     key: 'selection',
   }), []);
+  const [search, setSearch] = useState('');
   // const userId = "626c100d6bdf114a07577a35"
   
   useEffect(() => {
@@ -134,9 +135,15 @@ const Home = () => {
     setFilteredConcerts(concerts.filter((concert) => concert.genre_id === genre._id))
     console.log('filteredConcerts', filteredConcerts)
   }
+
+  const onSearchChange = (search) => {
+    console.log('SEARCH is: ', search)
+  }
   return (
     <div class='home'>
-      <SearchBar class="searchbar" />
+      <SearchBar class="searchbar" 
+      onSearchChange={onSearchChange}
+      search={search}/>
       <div class='homePageContent'>
         <div class="posts">
           <PostsManager 

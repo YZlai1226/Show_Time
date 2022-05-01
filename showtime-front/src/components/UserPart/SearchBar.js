@@ -66,7 +66,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -180,7 +180,7 @@ export default function PrimarySearchAppBar() {
 
 
 
-      <MenuItem onClick={handleProfileMenuOpen}>
+      <MenuItem onClick={() => {handleMenuClose(); navigate("/profile");}}>
         <IconButton
           size="large"
           aria-label="account of current user"
@@ -223,6 +223,8 @@ export default function PrimarySearchAppBar() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              // value={props.search}
+              // onChange={props.onSearchChange}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
@@ -242,7 +244,7 @@ export default function PrimarySearchAppBar() {
               </Badge>
             </IconButton>
 
-            <IconButton
+            {/* <IconButton
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
@@ -250,7 +252,7 @@ export default function PrimarySearchAppBar() {
               <Badge badgeContent={17} color="error">
                 <NotificationsIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
 
             <IconButton
               size="large"
@@ -266,7 +268,8 @@ export default function PrimarySearchAppBar() {
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              onClick={() => {handleMenuClose(); navigate("/profile")}
+            }
               color="inherit"
             >
               <AccountCircle />
