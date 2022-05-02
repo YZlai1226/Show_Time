@@ -2,6 +2,7 @@
 import React, { useRef, useState, useEffect, useContext  } from "react";
 import AuthContext from "../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import SearchBar from '../../components/UserPart/SearchBar.js'
 
 import axios from '../../api/axios'
 import './Login.css'
@@ -79,16 +80,18 @@ const Login = () => {
     }
 
     return (
-        <div class="signIn">
+        <>
+        <SearchBar />
+        <div style={{margin: "auto", marginTop: 100}} class="signIn">
             <p ref= {errRef} className={errMsg ? "errmsg" :
             "offscreen"} aria-live="assertive">{errMsg}</p>
             <h1>Sign In</h1>
             <div id="sign_in_form">
                 <form onSubmit={handleSubmit}>
                     <div class="container">
-                        <label htmlFor="email">Email:</label>
+                        <label class="login_label" htmlFor="email">Email:</label>
                         <br/>
-                        <input
+                        < input class="login_input" 
                             type="text"
                             id="email"
                             ref={userRef}
@@ -98,9 +101,9 @@ const Login = () => {
                             required
                         />
                         <br/>
-                        <label htmlFor="password">Password:</label>
+                        <label class="login_label" htmlFor="password">Password:</label>
                         <br/>
-                        <input
+                        < input class="login_input"
                             type="password"
                             id="password"
                             onChange={(e) => setPwd(e.target.value)}
@@ -109,7 +112,7 @@ const Login = () => {
                         />
                         <br/>
                         <br/>
-                        <button>Sign In</button>
+                        <button class="login_button">Sign In</button>
                     </div>
                 </form>
             </div>
@@ -120,6 +123,7 @@ const Login = () => {
                 </span>
             </p>
         </div>
+        </>
     )
 }
 

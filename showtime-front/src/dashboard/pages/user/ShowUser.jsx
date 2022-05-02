@@ -6,17 +6,22 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import axios from "axios";
+import axios from '../../../api/axios'
 
 export default function ShowUser() {
   let { userId } = useParams();
   let navigate = useNavigate();
   const [user, setUserData] = useState({});
+  let token = localStorage.getItem('token');
 
   // Get user
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/users/${userId}`)
+      .get(`http://localhost:3000/users/userdetails/${userId}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
       .then((res) => {
         console.log(res);
         setUserData(res.data);
@@ -24,7 +29,7 @@ export default function ShowUser() {
       .catch((err) => {
         console.log(err);
       });
-  }, [userId]);
+  }, [token, userId]);
 
   const [data, setData] = useState({
     name: "",
@@ -54,12 +59,20 @@ export default function ShowUser() {
       avatar: data.avatar
     };
     axios
-      .put(`http://localhost:3000/users/${userId}`, userData)
+      .put(`http://localhost:3000/users/${userId}`, userData, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
       .then((response) => {
+        console.log('here in put request')
         console.log(response.status);
         console.log(response.data);
       });
-    window.location.reload(false);
+      setTimeout(() => {
+        window.location.reload(false);
+      }, 1500);
+    
   };
 
   // Delete User
@@ -67,7 +80,7 @@ export default function ShowUser() {
   const deleteUser = (userId, e) => {
     e.preventDefault();
     axios
-      .delete(`http://localhost:3000/users/${userId}`)
+      .delete(`/users/${userId}`)
       .then((res) => console.log("deleted", res))
       .catch((err) => console.log(err));
     setTimeout(() => {
@@ -75,6 +88,8 @@ export default function ShowUser() {
     }, 1500);
   };
 
+  console.log('========user=======')
+  console.log(user)
   return (
     <>
       <Topbar />

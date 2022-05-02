@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import ConcertList from "./../../components/concertList/ConcertList";
 import Topbar from "./../../components/topbar/Topbar";
 import { Container, Button, Modal, Form } from "react-bootstrap";
-import axios from "axios";
+// import axios from "axios";
+import axios from '../../../api/axios'
 
 export default function Concert() {
   const [modalShow, setModalShow] = React.useState(false);
@@ -55,7 +56,6 @@ function MyVerticallyCenteredModal(props) {
 
     const newConcertData = {
       seat_amount: concertData.seat_amount,
-      image: concertData.image,
       title: concertData.title,
       description: concertData.description,
       date: concertData.date,
@@ -63,7 +63,7 @@ function MyVerticallyCenteredModal(props) {
       genre_id: concertData.genre_id,
     };
     axios
-      .post("http://localhost:3000/concerts", newConcertData)
+      .post("/concerts", newConcertData)
       .then((response) => {
         console.log(response.status);
         console.log(response.data);
@@ -158,7 +158,7 @@ function MyVerticallyCenteredModal(props) {
               value={concertData.genre_id}
               onChange={handleChange}
               type="text"
-              placeholder="band id"
+              placeholder="genre id"
             />
           </Form.Group>
 

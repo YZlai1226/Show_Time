@@ -11,7 +11,7 @@ export default function GenreList() {
 
     useEffect(() => {
       console.log('FRONT RIGHT HERE !');
-      axios.get('http://localhost:3000/genres')
+      axios.get('/genres')
       .then(res => {
         console.log(res)
         setGenresData(res.data)

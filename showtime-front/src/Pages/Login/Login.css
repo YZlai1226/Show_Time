@@ -1,6 +1,6 @@
 /* body {
     background-color: #66c2ff;
-}
+} */
 
 .signIn {
     width: 400px;
@@ -11,6 +11,9 @@
     margin-top: 200px;
     margin-bottom: 260px;
     text-align: center;
+    background-color: #66c2ff;
+    align-items: center;
+    padding-top: 50px;
 
 }
 
@@ -19,16 +22,16 @@
     background-color: #0047b3;
 }
 
-label {
+.login_label {
     font-size: 20px;
     border-radius: 20px;
 }
 
-input {
+.login_input {
     border-radius: 5px;
 }
 
-button {
+.login_button {
     border-radius: 5px;
     height: 35px;
     width: 68%;
@@ -39,4 +42,4 @@ button {
     color: white;
     border-color: transparent;
 }
- */
+

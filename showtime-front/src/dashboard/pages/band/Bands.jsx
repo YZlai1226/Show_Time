@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import Topbar from './../../components/topbar/Topbar'
 import BandList from '../../components/BandList';
 import { Container, Button, Modal, Form } from 'react-bootstrap';
-import axios from 'axios';
+// import axios from 'axios';
+import axios from '../../../api/axios'
 
 
 
@@ -55,7 +56,7 @@ function MyVerticallyCenteredModal(props) {
 
 
     };
-    axios.post("http://localhost:3000/bands", newBandData)
+    axios.post("/bands", newBandData)
     .then((response) => {
       console.log(response.status);
       console.log(response.data);

@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import Topbar from './../../components/topbar/Topbar'
 import GenreList from '../../components/GenreList';
 import { Container, Button, Modal, Form } from 'react-bootstrap';
-import axios from 'axios';
+// import axios from 'axios';
+import axios from '../../../api/axios'
 
 
 
@@ -55,7 +56,7 @@ function MyVerticallyCenteredModal(props) {
 
 
     };
-    axios.post("http://localhost:3000/genres", newGenreData)
+    axios.post("/genres", newGenreData)
     .then((response) => {
       console.log(response.status);
       console.log(response.data);

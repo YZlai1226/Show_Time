@@ -21,7 +21,7 @@ export class UsersController {
   findAll() {
     return this.usersService.findAll();
   }
-  
+
   @UseGuards(JwtAuthGuard)
   @Get(':email')
   findOne(@Param('email') email: string) {

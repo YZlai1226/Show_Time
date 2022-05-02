@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import "./topbar.css";
 import {Navbar, Nav, NavDropdown, Container, Offcanvas } from 'react-bootstrap'
@@ -8,12 +8,24 @@ import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import FestivalIcon from '@mui/icons-material/Festival';
 import PianoIcon from '@mui/icons-material/Piano';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../../../context/AuthProvider"
 
 export default function Topbar() {
   const [show, setShow] = useState(false);
+  const {auth, setAuth} = useContext(AuthContext);
+  let navigate = useNavigate();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setAuth(null);
+    setTimeout(() => {
+      navigate("/");
+    }, 1500);
+
+  }
 
   return (
     
@@ -30,7 +42,7 @@ export default function Topbar() {
     <Nav> 
       <Nav.Link href="#deets"><AccountCircleIcon sx={{fontSize: 30}} /></Nav.Link>
       <NavDropdown title="Actions" id="collasible-nav-dropdown">
-        <NavDropdown.Item href="#action/3.1">Logout</NavDropdown.Item>
+        <NavDropdown.Item onClick={() => handleLogout()}>Logout</NavDropdown.Item>
         <NavDropdown.Item href="/">Home Page</NavDropdown.Item>
  
       </NavDropdown>
