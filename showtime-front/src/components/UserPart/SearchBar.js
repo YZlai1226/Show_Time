@@ -162,7 +162,7 @@ export default function PrimarySearchAppBar(props) {
       <AppBar position="static">
         <Toolbar>
           <IconButton
-            // onClick={navigate("/")}
+            onClick={() => { handleMenuClose(); navigate("/"); }}
             size="large"
             edge="start"
             color="inherit"
@@ -209,22 +209,31 @@ export default function PrimarySearchAppBar(props) {
                   </>
             ) : ( 
               <>
+              {
+                auth.isAdmin ? (
+                  <>
                   <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={() => { handleMenuClose(); navigate("/wishlist"); }} >
                     <Badge badgeContent={props.wishlistNumber} color="error">
                       <FavoriteIcon />
                     </Badge>
                   </IconButton>
-
-                  {/* <IconButton
-                    size="large"
-                    aria-label="show 1 new notifications"
-                    color="inherit"
-                  > */}
-                    {/* <Badge badgeContent={1} color="error">
-                      <NotificationsIcon />
+                  <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={() => { handleMenuClose(); navigate("/dashboard"); }} >
+                    <AppRegistrationIcon />
+                    <p style={{ fontSize: 15, marginBottom: 0 }}> Admin </p>
+                  </IconButton>
+                  </>
+                  ) : (
+                    <>
+                    <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={() => { handleMenuClose(); navigate("/wishlist"); }} >
+                    <Badge badgeContent={props.wishlistNumber} color="error">
+                      <FavoriteIcon />
                     </Badge>
-                  </IconButton> */}
-
+                  </IconButton>
+                  </>
+                  )
+                }
+                {console.log('auth is ', auth)}
+                
                   <IconButton
                     onClick={() => handleLogout()}
                     size="large"
