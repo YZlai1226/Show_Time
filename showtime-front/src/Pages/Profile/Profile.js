@@ -12,6 +12,7 @@ import SearchBar from '../../components/UserPart/SearchBar.js'
 
 
 export default function ShowUser() {
+  const token = localStorage.getItem("token")
   const { auth, setAuth } = useContext(AuthContext);
   let { userId } = useParams();
   let navigate = useNavigate();
@@ -98,12 +99,16 @@ export default function ShowUser() {
       password: data.password,
     };
     axios
-      .put(`/users/${userId}`, user)
+      .put(`/users/${auth.userId}`, user, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
       .then((response) => {
         console.log(response.status);
         console.log(response.data);
       });
-    window.location.reload(false);
+    // window.location.reload(false);
   };
 
   /////////////////
@@ -113,7 +118,7 @@ export default function ShowUser() {
   const deleteUser = (userId, e) => {
     e.preventDefault();
     axios
-      .delete(`http://localhost:3000/users/${userId}`)
+      .delete(`http://localhost:3000/users/${auth.userId}`)
       .then((res) => console.log("deleted", res))
       .catch((err) => console.log(err));
     setTimeout(() => {
