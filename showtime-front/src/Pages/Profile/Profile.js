@@ -108,6 +108,9 @@ export default function ShowUser() {
         console.log(response.status);
         console.log(response.data);
       });
+      setTimeout(() => {
+        window.location.reload(false);
+      }, 1500);
     // window.location.reload(false);
   };
 
