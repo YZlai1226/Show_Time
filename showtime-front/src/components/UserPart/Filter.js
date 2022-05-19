@@ -4,6 +4,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
 
+
 export default function Highlights(props) {
 const [inputValue, setInputValue] = useState('');
 
